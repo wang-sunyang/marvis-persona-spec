@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# marvis-lint: ignore-file 本文件是 20 条禁句的定义源，禁句原文即数据，不得改写
 """
 marvis_lint — Marvis 人格执行规范 v3 · 禁止词检查器
 
@@ -18,6 +19,8 @@ import json
 import os
 import re
 import sys
+
+# marvis-lint: ignore-file 本文件是 20 条禁句的定义源，禁句原文即数据，不得改写
 
 # ---------------------------------------------------------------- 禁句库
 # (编号, 分组, 正则, 原句, 改写建议)
@@ -48,10 +51,23 @@ COMPILED = [(n, g, re.compile(p), raw, hint) for n, g, p, raw, hint in BANNED]
 
 DEFAULT_EXT = [".py", ".ts", ".tsx", ".js", ".jsx", ".kt", ".java",
                ".swift", ".dart", ".json", ".yaml", ".yml", ".xml",
-               ".vue", ".rs", ".go"]
+               ".vue", ".rs", ".go", ".md", ".mdx"]
 DEFAULT_EXCLUDE = ["node_modules", ".git", "build", "dist", ".gradle",
                    "__pycache__", "venv", ".venv", "vendor"]
 IGNORE_TOKEN = "marvis-lint: ignore"
+# 文件级豁免：须写在前 5 行内，且必须带理由，例：
+#   <!-- marvis-lint: ignore-file 本文件是禁句表本体，示例即条款 -->
+IGNORE_FILE_TOKEN = "marvis-lint: ignore-file"
+FILE_HEADER_SCAN = 5
+
+
+def file_exempted(text):
+    """前 FILE_HEADER_SCAN 行内出现文件级豁免标记则整文件跳过。"""
+    head = text.splitlines()[:FILE_HEADER_SCAN]
+    for line in head:
+        if IGNORE_FILE_TOKEN in line:
+            return True
+    return False
 
 
 def check_text(text):
@@ -82,8 +98,9 @@ def to_records(raw_hits, rel_path):
     return out
 
 
-def emit_summary(records, scanned, root):
+def emit_summary(records, scanned, root, exempt=None):
     """写入 GitHub Step Summary（若在 Actions 环境中）"""
+    exempt = exempt or []
     groups = {}
     files = {}
     for r in records:
@@ -105,6 +122,12 @@ def emit_summary(records, scanned, root):
         for r in records[:50]:
             lines.append(f"| `{r['file']}:{r['line']}` | {r['id']} | {r['hit']} | {r['suggest']} |")
         lines += ["", "</details>", ""]
+
+    if exempt:
+        lines += ["", "**文件级豁免 %d 个**（`marvis-lint: ignore-file`）：" % len(exempt), ""]
+        for e in exempt:
+            lines.append(f"- `{e}`")
+        lines.append("")
 
     md = "\n".join(lines)
     target = os.environ.get("GITHUB_STEP_SUMMARY")
@@ -149,22 +172,26 @@ def main():
     include = [e if e.startswith(".") else "." + e for e in args.include] if args.include else DEFAULT_EXT
     exclude = set(args.exclude) if args.exclude else set(DEFAULT_EXCLUDE)
 
-    records, scanned = [], 0
+    records, scanned, exempt = [], 0, []
     for fp in iter_files(args.path, include, exclude):
-        scanned += 1
         try:
             with open(fp, "r", encoding="utf-8", errors="ignore") as f:
                 content = f.read()
         except OSError:
             continue
+        rel = os.path.relpath(fp, args.path)
+        if file_exempted(content):
+            exempt.append(rel)
+            continue
+        scanned += 1
         hits = check_text(content)
         if hits:
-            records.extend(to_records(hits, os.path.relpath(fp, args.path)))
+            records.extend(to_records(hits, rel))
 
     if args.as_json:
         print(json.dumps(records, ensure_ascii=False, indent=2))
     elif args.summary:
-        emit_summary(records, scanned, args.path)
+        emit_summary(records, scanned, args.path, exempt)
     else:
         for r in records:
             print(f"{r['file']}:{r['line']}:{r['col']}  [{r['id']}] {r['group']} · 「{r['hit']}」 → {r['suggest']}")
@@ -173,6 +200,8 @@ def main():
             print(f"FAIL — {len(set(r['file'] for r in records))} 个文件，{len(records)} 处禁句。请按箭头改写。")
         else:
             print(f"PASS — 扫描 {args.path}（{scanned} 个文件），零命中。")
+        if exempt:
+            print(f"另 {len(exempt)} 个文件按 ignore-file 豁免：" + "、".join(exempt))
 
     if records and not args.warn_only:
         return 1

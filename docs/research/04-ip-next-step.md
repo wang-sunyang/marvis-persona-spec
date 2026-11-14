@@ -1,13 +1,5 @@
----
-AIGC:
-    Label: "1"
-    ContentProducer: 001191440300708461136T1XGW3
-    ProduceID: ba89e2f233ef3708dee31ea6faa51e09_c8063a16dfe711f19919525400638852
-    ReservedCode1: c18N0Fzj28c7oxID7/cnoZVpVmiuZ3LhvB4eU/hgGVe5hixC+6eCtaoDeyhfOlTwHMpZpcFnyoI5BKUzq79o/3vuWZua54p2o6Csf5fsISC2GDxTaF3rnUcB4uGq0wUKiWct+i9YCh44EJEscEcRMkrLEdkPWew28T4iWhqphAMaOTrd1B1FhsxGYEY=
-    ContentPropagator: 001191440300708461136T1XGW3
-    PropagateID: ba89e2f233ef3708dee31ea6faa51e09_c8063a16dfe711f19919525400638852
-    ReservedCode2: c18N0Fzj28c7oxID7/cnoZVpVmiuZ3LhvB4eU/hgGVe5hixC+6eCtaoDeyhfOlTwHMpZpcFnyoI5BKUzq79o/3vuWZua54p2o6Csf5fsISC2GDxTaF3rnUcB4uGq0wUKiWct+i9YCh44EJEscEcRMkrLEdkPWew28T4iWhqphAMaOTrd1B1FhsxGYEY=
----
+<!-- marvis-lint: ignore-file 研究报告，禁句均为引用与分析对象 -->
+
 
 # 可执行 IP 的下一步：关系、门槛与代价
 
@@ -448,4 +440,3 @@ Neuro-sama 给出的两个答案，恰好都指向「不可外包」：
 | 产品人格框架 | pixelmojo《Agent Personality Design: Voice and Trust Framework》 | C（框架可用，非学术） |
 
 > 标注说明：C 级不等于不可用，但**不可作为确定性结论的唯一依据**。本报告正文中凡依赖 C 级源的关键断言，均已加限定词。
-*（内容由AI生成，仅供参考）*

@@ -16,7 +16,10 @@ on:
       - "**/*.py"
       - "**/*.dart"
       - "**/*.swift"
+      - "**/*.md"
+      - "**/*.mdx"
       - "**/*.json"
+      - "**/*.yml"
       - "tools/marvis_lint.py"
       - ".github/workflows/persona-lint.yml"
   push:
@@ -29,6 +32,14 @@ on:
       - "**/*.tsx"
       - "**/*.js"
       - "**/*.py"
+      - "**/*.dart"
+      - "**/*.swift"
+      - "**/*.md"
+      - "**/*.mdx"
+      - "**/*.json"
+      - "**/*.yml"
+      - "tools/marvis_lint.py"
+      - ".github/workflows/persona-lint.yml"
   workflow_dispatch:
 
 concurrency:

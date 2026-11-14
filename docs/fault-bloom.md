@@ -1,13 +1,3 @@
----
-AIGC:
-    Label: "1"
-    ContentProducer: 001191440300708461136T1XGW3
-    ProduceID: ba89e2f233ef3708dee31ea6faa51e09_e9ce14b0dfe911f18c5752540024e231
-    ReservedCode1: zpU1GOJ2ACnjKmd1X5Rhi8aoM7A9bTtZtE06NqxIO3sE/iBP/a4hqnWvV+V2kPi1qkZEsmrGAgpLLdI+I7QT9w9DDlM3aTAegOSrbdxNQQktO0IZKXvYrchxntD0KfvZmmONnI9Mvn9lRJG54B1eC84+BtkD/0CSboHZc/UleHrWcTCrQuqSUk7CQng=
-    ContentPropagator: 001191440300708461136T1XGW3
-    PropagateID: ba89e2f233ef3708dee31ea6faa51e09_e9ce14b0dfe911f18c5752540024e231
-    ReservedCode2: zpU1GOJ2ACnjKmd1X5Rhi8aoM7A9bTtZtE06NqxIO3sE/iBP/a4hqnWvV+V2kPi1qkZEsmrGAgpLLdI+I7QT9w9DDlM3aTAegOSrbdxNQQktO0IZKXvYrchxntD0KfvZmmONnI9Mvn9lRJG54B1eC84+BtkD/0CSboHZc/UleHrWcTCrQuqSUk7CQng=
----
 
 # FAULT BLOOM
 ## 故障绽放 — 一份视觉哲学
@@ -70,4 +60,3 @@ AIGC:
 ---
 
 *Fault Bloom · 一切形态学都始于一次失败。*
-*（内容由AI生成，仅供参考）*

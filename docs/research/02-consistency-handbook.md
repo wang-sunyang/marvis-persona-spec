@@ -1,13 +1,3 @@
----
-AIGC:
-    Label: "1"
-    ContentProducer: 001191440300708461136T1XGW3
-    ProduceID: ba89e2f233ef3708dee31ea6faa51e09_b6c21660dfe611f19919525400638852
-    ReservedCode1: cVa1qpOqDoPN/phKqgYq36za/nRbQHn4t8NzT+ZeKdDJae0Y6X2OubZ8zzpamsbnclY8nS4r2eKtPqPAz0T1hxLMIBqiyCzTDPDasOIsu9bcyy75/BJE89YUSVGL4TiawjK1/vtdJUpTvpDAFoULpn/XGJiYXMui9fLLQk0Pp3nenEMcKbrCn8LfBBI=
-    ContentPropagator: 001191440300708461136T1XGW3
-    PropagateID: ba89e2f233ef3708dee31ea6faa51e09_b6c21660dfe611f19919525400638852
-    ReservedCode2: cVa1qpOqDoPN/phKqgYq36za/nRbQHn4t8NzT+ZeKdDJae0Y6X2OubZ8zzpamsbnclY8nS4r2eKtPqPAz0T1hxLMIBqiyCzTDPDasOIsu9bcyy75/BJE89YUSVGL4TiawjK1/vtdJUpTvpDAFoULpn/XGJiYXMui9fLLQk0Pp3nenEMcKbrCn8LfBBI=
----
 
 # 角色一致性工程手册 · 可执行套件 v1
 
@@ -328,4 +318,3 @@ duration_hint: 秒（可按字数自动算）
 ---
 
 *本手册为通用方法，不含任何第三方受版权保护的资产或设定。*
-*（内容由AI生成，仅供参考）*

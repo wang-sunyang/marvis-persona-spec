@@ -1,13 +1,5 @@
----
-AIGC:
-    Label: "1"
-    ContentProducer: 001191440300708461136T1XGW3
-    ProduceID: ba89e2f233ef3708dee31ea6faa51e09_e40f7d57dfe911f18c5752540024e231
-    ReservedCode1: MAacj9JbeYMhhhIQohLABkdhTEJjzvkVhr58eloUUfmMDuQynWv0CPVoGMQPFg16uGaOcgJg5qCR373AFoWgusif71Xf6z8aggTlAdrbJRO8qIV9nwrydhqlr3YQ28e3m0nePZTPZ8nHWfeGAwVRuv+grnRZv12ebxgPXdHlxc2uD7LRwP8M0/DTtSs=
-    ContentPropagator: 001191440300708461136T1XGW3
-    PropagateID: ba89e2f233ef3708dee31ea6faa51e09_e40f7d57dfe911f18c5752540024e231
-    ReservedCode2: MAacj9JbeYMhhhIQohLABkdhTEJjzvkVhr58eloUUfmMDuQynWv0CPVoGMQPFg16uGaOcgJg5qCR373AFoWgusif71Xf6z8aggTlAdrbJRO8qIV9nwrydhqlr3YQ28e3m0nePZTPZ8nHWfeGAwVRuv+grnRZv12ebxgPXdHlxc2uD7LRwP8M0/DTtSs=
----
+<!-- marvis-lint: ignore-file 本文件是 20 条禁句的定义源，示例即条款 -->
+
 
 # MARVIS 人格执行规范 v3
 
@@ -343,4 +335,3 @@ CI 落地见 `MARVIS_09_ci_persona-lint.yml` 与 `MARVIS_09_CI接入说明.md`�
 ---
 
 *FAULT BLOOM · 连最短暂的一瞬，也值得被这样对待。*
-*（内容由AI生成，仅供参考）*

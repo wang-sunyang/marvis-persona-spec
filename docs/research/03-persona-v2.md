@@ -1,13 +1,3 @@
----
-AIGC:
-    Label: "1"
-    ContentProducer: 001191440300708461136T1XGW3
-    ProduceID: ba89e2f233ef3708dee31ea6faa51e09_b74145e9dfe611f18c5752540024e231
-    ReservedCode1: F/H6DDUZxmH1EjH9QrJOeD3zJ0qKOItE/orC8v51ucs5KPKv1J9c6yOsefKrpAiX3S41AHRceVkLpEh2F1a8k/6MmP7sL1VtePCCoocNijARfji4lObALz01+OYq4gAeO+SmRQghOBW1ruzQWHIxbveWu5tTboRkHo3T4RC4FB6Px7/jYSnwaYKkjVI=
-    ContentPropagator: 001191440300708461136T1XGW3
-    PropagateID: ba89e2f233ef3708dee31ea6faa51e09_b74145e9dfe611f18c5752540024e231
-    ReservedCode2: F/H6DDUZxmH1EjH9QrJOeD3zJ0qKOItE/orC8v51ucs5KPKv1J9c6yOsefKrpAiX3S41AHRceVkLpEh2F1a8k/6MmP7sL1VtePCCoocNijARfji4lObALz01+OYq4gAeO+SmRQghOBW1ruzQWHIxbveWu5tTboRkHo3T4RC4FB6Px7/jYSnwaYKkjVI=
----
 
 # MARVIS 拟人形象设定书 · v2
 
@@ -373,4 +363,3 @@ MARVIS 角色（含设定文本、立绘、视觉规范）为原创作品。
 ---
 
 *本设定书为原创作品，方法论参考见 `MARVIS_04` 报告附录 A 信源清单，未复用任何第三方 IP 的具体形象要素。*
-*（内容由AI生成，仅供参考）*

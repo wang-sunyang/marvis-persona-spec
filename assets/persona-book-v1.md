@@ -1,13 +1,3 @@
----
-AIGC:
-    Label: "1"
-    ContentProducer: 001191440300708461136T1XGW3
-    ProduceID: ba89e2f233ef3708dee31ea6faa51e09_f66e9559dfe411f18c5752540024e231
-    ReservedCode1: s+P8V1qOTIho+D5aSetuH6fKM3VrH/2ry89eO5hTs1OAbRrg4TEufQ1YYzLf+IBtZmLiJpAdgF/0wCNDu3eZeSipxNSONOSjbbSpjkUvaTz7Ixcp8QsPOWjZMgK7rADU8qn/Fe+vy3hIhrGBDwKEwsfnLq2LLtaOYKT46XPBBj8FW2scEonWcVixdm8=
-    ContentPropagator: 001191440300708461136T1XGW3
-    PropagateID: ba89e2f233ef3708dee31ea6faa51e09_f66e9559dfe411f18c5752540024e231
-    ReservedCode2: s+P8V1qOTIho+D5aSetuH6fKM3VrH/2ry89eO5hTs1OAbRrg4TEufQ1YYzLf+IBtZmLiJpAdgF/0wCNDu3eZeSipxNSONOSjbbSpjkUvaTz7Ixcp8QsPOWjZMgK7rADU8qn/Fe+vy3hIhrGBDwKEwsfnLq2LLtaOYKT46XPBBj8FW2scEonWcVixdm8=
----
 
 # MARVIS 拟人形象设定书 · 01
 
@@ -129,4 +119,3 @@ heterochromia, nsfw
 - 今日头条《大模型人设真毛病被网友集体"娘化"：白龙娘、鲸鱼娘、狐狸娘》
 - 硅基研究室类站点：AI 娘化品牌—角色对照（genderswapai）、AI Girl fumo 图鉴（GitHub）
 - Recode China AI《How Chinese AI Found Its Persona》（豆包官方设计访谈）
-*（内容由AI生成，仅供参考）*

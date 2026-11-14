@@ -1,13 +1,3 @@
----
-AIGC:
-    Label: "1"
-    ContentProducer: 001191440300708461136T1XGW3
-    ProduceID: ba89e2f233ef3708dee31ea6faa51e09_b62d9170dfe611f19919525400638852
-    ReservedCode1: 2LrAVaTT7AFCnbpAazdmjN0rEWGOzOMVKUHDWRc1Z8HA89Zd2kjYKUxQcue9n7XDGLTHlfpVXLqF4i71dYyQJVcotw0sqjTdZPYxUiyrI8YvJNMDDuzuyRly1b9PZpPjvtQ72wvfejLgrILoNus36SSk0vXQgU4vNRaa41GR5GwTAeeSM7u3x8PVMvI=
-    ContentPropagator: 001191440300708461136T1XGW3
-    PropagateID: ba89e2f233ef3708dee31ea6faa51e09_b62d9170dfe611f19919525400638852
-    ReservedCode2: 2LrAVaTT7AFCnbpAazdmjN0rEWGOzOMVKUHDWRc1Z8HA89Zd2kjYKUxQcue9n7XDGLTHlfpVXLqF4i71dYyQJVcotw0sqjTdZPYxUiyrI8YvJNMDDuzuyRly1b9PZpPjvtQ72wvfejLgrILoNus36SSk0vXQgU4vNRaa41GR5GwTAeeSM7u3x8PVMvI=
----
 
 # AI 拟人形象深度研究报告
 
@@ -622,4 +612,3 @@ Marvis 是原创角色，但一旦开放二创，必须同时公布：哪些可�
 ---
 
 *本报告由 deep-research 四阶段法产出，所有确定性结论均标注来源与等级；标注 C 级的信息仅作线索，未作为核心论据。*
-*（内容由AI生成，仅供参考）*
