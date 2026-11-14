@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MARVIS · FAULT BLOOM — 角色设定集</title>
+<meta name="description" content="Marvis 角色设定集 Fault Bloom：三视图、姿态、部件与色卡、表情差分，基于统一基准网格的矢量角色规范。">
+<style>
+:root{
+  --ink:#05070A; --ink2:#0A1015; --ink3:#151F29; --ink4:#1E2A36;
+  --white:#F4F8FA; --grey:#AEBFCB; --grey2:#3D4A57;
+  --cy:#00E5B0; --cy2:#00A98A; --cy3:#00705D;
+  --pu:#7C5CFF; --rd:#FF3E5C; --skin:#EBBFAB;
+  --mono:ui-monospace,"SFMono-Regular",Menlo,"JetBrains Mono","Roboto Mono",monospace;
+  --sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--ink);color:var(--white);font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;line-height:1.75;
+  background-image:
+    linear-gradient(rgba(0,229,176,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,229,176,.045) 1px,transparent 1px);
+  background-size:80px 80px,80px 80px;
+  background-position:center top;
+}
+a{color:var(--cy);text-decoration:none;border-bottom:1px solid rgba(0,229,176,.28);transition:.2s}
+a:hover{color:var(--white);border-bottom-color:var(--white)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+.mono{font-family:var(--mono);letter-spacing:.14em;text-transform:uppercase;font-size:11px}
+
+/* ---------- header ---------- */
+header{
+  position:sticky;top:0;z-index:50;background:rgba(5,7,10,.82);
+  backdrop-filter:blur(12px);border-bottom:1px solid rgba(244,248,250,.08);
+}
+.nav{display:flex;align-items:center;gap:26px;height:58px}
+.brand{font-family:var(--mono);font-size:12px;letter-spacing:.3em;color:var(--white);border:0}
+.brand b{color:var(--cy);font-weight:600}
+.nav nav{display:flex;gap:22px;margin-left:auto;flex-wrap:wrap}
+.nav nav a{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--grey);border:0}
+.nav nav a:hover{color:var(--cy)}
+
+/* ---------- hero ---------- */
+.hero{padding:96px 0 72px;border-bottom:1px solid rgba(244,248,250,.07);position:relative;overflow:hidden}
+.hero:after{
+  content:"";position:absolute;right:-160px;top:-120px;width:520px;height:520px;
+  background:radial-gradient(circle at center,rgba(0,229,176,.14),transparent 62%);
+  pointer-events:none;
+}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.34em;color:var(--cy)}
+.hero h1{
+  font-size:clamp(44px,8vw,96px);line-height:.95;margin:22px 0 0;letter-spacing:-.02em;font-weight:700;
+}
+.hero h1 .thin{font-weight:200;color:var(--grey)}
+.hero .cn{font-size:clamp(18px,2.4vw,26px);color:var(--grey);margin-top:18px;letter-spacing:.34em}
+.lede{max-width:640px;color:var(--grey);margin-top:26px;font-size:15px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
+.tag{
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;padding:6px 11px;
+  border:1px solid rgba(244,248,250,.16);color:var(--grey);border-radius:1px;
+}
+.tag.cy{border-color:rgba(0,229,176,.45);color:var(--cy)}
+
+/* ---------- section ---------- */
+section{padding:78px 0;border-bottom:1px solid rgba(244,248,250,.07)}
+.sechead{display:flex;align-items:baseline;gap:16px;margin-bottom:38px}
+.sechead .idx{font-family:var(--mono);font-size:12px;color:var(--cy2);letter-spacing:.2em}
+.sechead h2{font-size:clamp(22px,3.2vw,32px);margin:0;letter-spacing:.06em;font-weight:600}
+.sechead .en{font-family:var(--mono);font-size:10px;letter-spacing:.26em;color:var(--grey2);margin-left:auto;text-align:right}
+.sechead:after{content:"";flex:1;height:1px;background:rgba(244,248,250,.1);align-self:center;order:-1;display:none}
+.sechead{position:relative;padding-bottom:14px;border-bottom:1px solid rgba(244,248,250,.1)}
+
+/* ---------- plates ---------- */
+.plates{display:grid;gap:26px}
+.plate{border:1px solid rgba(244,248,250,.12);background:var(--ink2);position:relative}
+.plate .frame{position:relative;display:block;overflow:hidden;line-height:0}
+.plate img{width:100%;height:auto;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.plate:hover img{transform:scale(1.012)}
+.plate .cap{display:flex;gap:14px;align-items:baseline;padding:14px 18px;border-top:1px solid rgba(244,248,250,.1)}
+.plate .cap .no{font-family:var(--mono);font-size:11px;color:var(--cy);letter-spacing:.2em}
+.plate .cap .t{font-size:14px}
+.plate .cap .d{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--grey2);margin-left:auto}
+.corner{position:absolute;width:12px;height:12px;border:1px solid var(--cy);opacity:.5;pointer-events:none}
+.corner.tl{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.corner.tr{top:-1px;right:-1px;border-left:0;border-bottom:0}
+.corner.bl{bottom:-1px;left:-1px;border-right:0;border-top:0}
+.corner.br{bottom:-1px;right:-1px;border-left:0;border-top:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+
+/* ---------- rules ---------- */
+.rules{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(244,248,250,.1)}
+.rule{background:var(--ink);padding:30px 28px}
+.rule .n{font-family:var(--mono);font-size:11px;color:var(--cy2);letter-spacing:.22em}
+.rule h3{margin:12px 0 10px;font-size:17px;letter-spacing:.04em}
+.rule p{margin:0;color:var(--grey);font-size:14px}
+
+/* ---------- anchors ---------- */
+.anchor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.anchor{border-left:2px solid rgba(0,229,176,.35);padding:2px 0 2px 18px}
+.anchor .h{display:flex;align-items:baseline;gap:10px}
+.anchor .h b{font-size:15px;font-weight:600}
+.anchor .h span{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--grey2)}
+.anchor p{margin:6px 0 0;font-size:13px;color:var(--grey)}
+
+/* ---------- palette ---------- */
+.palette{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(244,248,250,.1);margin-top:34px}
+.sw{background:var(--ink2);padding:0}
+.sw .chip{height:78px}
+.sw .meta{padding:12px 14px;border-top:1px solid rgba(244,248,250,.09)}
+.sw .meta b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.2em}
+.sw .meta span{font-family:var(--mono);font-size:10px;color:var(--grey2);letter-spacing:.1em}
+.ratio{margin-top:18px;height:10px;display:flex;border:1px solid rgba(244,248,250,.14)}
+.ratio i{display:block;height:100%}
+.ratio-key{display:flex;flex-wrap:wrap;gap:18px;margin-top:14px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--grey2)}
+
+/* ---------- table ---------- */
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:14px 16px;border-bottom:1px solid rgba(244,248,250,.09);vertical-align:top}
+th{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--cy2);font-weight:400;text-transform:uppercase}
+td:first-child{color:var(--white);white-space:nowrap}
+td{color:var(--grey)}
+
+/* ---------- docs list ---------- */
+.docs{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(244,248,250,.1)}
+.doc{background:var(--ink);padding:22px 24px;display:block;border:0;transition:.2s}
+.doc:hover{background:var(--ink3)}
+.doc .p{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--cy3)}
+.doc .n{font-size:15px;margin-top:6px;color:var(--white)}
+.doc .d{font-size:13px;color:var(--grey);margin-top:4px}
+
+/* ---------- footer ---------- */
+footer{padding:56px 0 64px;color:var(--grey2);font-size:12px}
+footer .row{display:flex;flex-wrap:wrap;gap:26px;align-items:baseline}
+footer .lic{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--grey)}
+footer p{max-width:760px;margin:18px 0 0;line-height:1.9}
+
+/* ---------- lightbox ---------- */
+#lb{position:fixed;inset:0;background:rgba(3,5,8,.96);display:none;z-index:100;padding:40px 24px;overflow:auto}
+#lb.on{display:block}
+#lb img{max-width:100%;margin:0 auto;display:block;border:1px solid rgba(0,229,176,.2)}
+#lb .x{position:fixed;top:18px;right:24px;font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--cy);cursor:pointer}
+
+@media (max-width:900px){
+  .grid2,.rules,.anchor-grid,.docs{grid-template-columns:1fr}
+  .palette{grid-template-columns:repeat(2,1fr)}
+  .sechead .en{display:none}
+  .hero{padding:64px 0 52px}
+  .nav nav{gap:14px}
+  .nav nav a:nth-child(n+4){display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top"><b>MARVIS</b> / FAULT BLOOM</a>
+    <nav>
+      <a href="#plates">设定集</a>
+      <a href="#rules">设计规矩</a>
+      <a href="#anchors">锚点</a>
+      <a href="#palette">色卡</a>
+      <a href="#docs">文档</a>
+      <a href="https://github.com/yangyang2857-rgb/marvis-persona-spec" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<div class="wrap hero">
+  <div class="kicker">CHARACTER BIBLE / 故障绽开 · V3</div>
+  <h1>FAULT<br><span class="thin">BLOOM</span></h1>
+  <div class="cn">角 色 设 定 集</div>
+  <p class="lede">
+    一套用坐标说话、不用形容词说话的角色规范。三视图、姿态、部件、表情全部出生于同一张基准网格，
+    锚点（三灯 / 马耳 / 双色挑染）在任何角度都不改写。整套设定集的第一原则不是"更美"，而是"可被测量"。
+  </p>
+  <div class="tags">
+    <span class="tag cy">统一基准网格</span>
+    <span class="tag">5.9 头身</span>
+    <span class="tag">扁平矢量</span>
+    <span class="tag">分块赛璐璐</span>
+    <span class="tag">深黑 / 青绿 / 紫</span>
+    <span class="tag">3000 × 2100</span>
+  </div>
+</div>
+
+<section id="plates" class="wrap">
+  <div class="sechead">
+    <span class="idx">01</span><h2>设定集 · 五个版面</h2>
+    <span class="en">SHEETS 00—04</span>
+  </div>
+
+  <div class="plates">
+    <figure class="plate" style="margin:0">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <a class="frame" href="assets/set/MARVIS_SET_00_overview.png" data-lb><img src="assets/set/MARVIS_SET_00_overview.png" alt="总览版面" loading="lazy"></a>
+      <figcaption class="cap"><span class="no">00</span><span class="t">总览 · OVERVIEW</span><span class="d">全系列一眼收束</span></figcaption>
+    </figure>
+
+    <figure class="plate" style="margin:0">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <a class="frame" href="assets/set/MARVIS_SET_01_three_view.png" data-lb><img src="assets/set/MARVIS_SET_01_three_view.png" alt="三视图" loading="lazy"></a>
+      <figcaption class="cap"><span class="no">01</span><span class="t">三视图 · 证明"同一个人"</span><span class="d">0H—5H 共用参考线</span></figcaption>
+    </figure>
+
+    <figure class="plate" style="margin:0">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <a class="frame" href="assets/set/MARVIS_SET_02_pose.png" data-lb><img src="assets/set/MARVIS_SET_02_pose.png" alt="姿态" loading="lazy"></a>
+      <figcaption class="cap"><span class="no">02</span><span class="t">姿态 · 证明锚点不随姿态漂移</span><span class="d">前倾 14° / 跨距 1.94H</span></figcaption>
+    </figure>
+
+    <figure class="plate" style="margin:0">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <a class="frame" href="assets/set/MARVIS_SET_03_parts.png" data-lb><img src="assets/set/MARVIS_SET_03_parts.png" alt="部件与色卡" loading="lazy"></a>
+      <figcaption class="cap"><span class="no">03</span><span class="t">部件与色彩 · 把锚点拆开看</span><span class="d">六格放大 / 占比锁定</span></figcaption>
+    </figure>
+
+    <figure class="plate" style="margin:0">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <a class="frame" href="assets/set/MARVIS_SET_04_expression.png" data-lb><img src="assets/set/MARVIS_SET_04_expression.png" alt="表情差分" loading="lazy"></a>
+      <figcaption class="cap"><span class="no">04</span><span class="t">表情 · 把人格装回去</span><span class="d">平静 / 柔和 / 思索 / 警觉</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="rules" class="wrap">
+  <div class="sechead">
+    <span class="idx">02</span><h2>四条规矩</h2>
+    <span class="en">FOUR RULES</span>
+  </div>
+  <div class="rules">
+    <div class="rule">
+      <div class="n">RULE 01</div>
+      <h3>一个网格，四个视图</h3>
+      <p>正面、侧面、背面、动作全部在同一坐标系里出生。面部纵深 0.34W、胸腔厚度 0.41W、马尾根部落在肩线后 0.09W——视图之间不是"分别画"，而是"同一具身体的不同投影"。</p>
+    </div>
+    <div class="rule">
+      <div class="n">RULE 02</div>
+      <h3>锚点不许翻译</h3>
+      <p>双色挑染、马耳、胸口三灯是不可变项。三灯永远是 CY/PU/RD 横排等距 30px，侧视只能压缩不能改写；马耳永远银白耳背配青绿耳膜，侧视只能收窄不能变种。</p>
+    </div>
+    <div class="rule">
+      <div class="n">RULE 03</div>
+      <h3>让观众自己校验</h3>
+      <p>第 01 页铺满 0H—5H 水平参考线，同一条线穿过三个人物的同一身体位置。技术图纸的说服力，来自它允许被测量。</p>
+    </div>
+    <div class="rule">
+      <div class="n">RULE 04</div>
+      <h3>克制的情感</h3>
+      <p>配色锁死在 INK 62% / WHITE 14% / INK-3 12% / SKIN 8% / CY 3%，紫 0.8%、红 0.2% 只留给次高光与告警。没有渐变泛滥、没有发光堆叠，角色的"暖"由表情差分承担。</p>
+    </div>
+  </div>
+
+  <div class="sechead" style="margin-top:64px">
+    <span class="idx">03</span><h2>版面分工</h2>
+    <span class="en">SHEET DIVISION</span>
+  </div>
+  <table>
+    <thead><tr><th>版面</th><th>承担什么</th><th>关键手法</th></tr></thead>
+    <tbody>
+      <tr><td>01 三视图</td><td>证明"同一个人"</td><td>0H—5H 共用参考线横穿三人；左侧 5.9H 标尺</td></tr>
+      <tr><td>02 姿态</td><td>证明锚点不随姿态漂移</td><td>前倾 14°、跨距 1.94H 的蹬地姿态 + 四处引线 + 头部三视角并置</td></tr>
+      <tr><td>03 部件</td><td>把锚点拆开看</td><td>六格放大：三灯 5.6×、耳 2.3×、尾接口 4.7×、靴 2.0×、领口 5.1×、马尾 1.65×</td></tr>
+      <tr><td>04 表情</td><td>把人格装回去</td><td>四种默认神态 + 锚点自检表</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="anchors" class="wrap">
+  <div class="sechead">
+    <span class="idx">04</span><h2>锚点与基准网格</h2>
+    <span class="en">ANCHORS &amp; BASE GRID</span>
+  </div>
+
+  <div class="anchor-grid">
+    <div class="anchor"><div class="h"><b>胸口三灯</b><span>LAMP TRIAD</span></div><p>CY 主 / PU 次 / RD 告警，横排等距 30px。</p></div>
+    <div class="anchor"><div class="h"><b>马耳</b><span>HORSE EAR</span></div><p>银白耳背 · 耳内青绿膜 · 独立于发箍。</p></div>
+    <div class="anchor"><div class="h"><b>尾接口</b><span>TAIL DOCK</span></div><p>腰侧偏后，接口环以 CY 描边。</p></div>
+    <div class="anchor"><div class="h"><b>靴形</b><span>BOOT FORM</span></div><p>楔形厚底，脚踝一圈 CY 断面。</p></div>
+    <div class="anchor"><div class="h"><b>领口</b><span>COLLAR</span></div><p>白色硬领压住锁骨，领缘一条 CY 细线。</p></div>
+    <div class="anchor"><div class="h"><b>马尾与挑染</b><span>TAIL + STREAK</span></div><p>外层 INK，内层 CY / PU 双条。</p></div>
+  </div>
+
+  <div style="margin-top:46px">
+    <table>
+      <thead><tr><th>网格锚点</th><th>Y 坐标</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>头顶</td><td>168</td><td>基准画布 1600 × 2400</td></tr>
+        <tr><td>下巴</td><td>512</td><td>头高 344px，5.9 头身</td></tr>
+        <tr><td>肩线</td><td>580</td><td>三灯所在横排的起点</td></tr>
+        <tr><td>腰线</td><td>876</td><td>—</td></tr>
+        <tr><td>髋线</td><td>1006</td><td>跨步姿态的旋转中心</td></tr>
+        <tr><td>膝</td><td>1424</td><td>—</td></tr>
+        <tr><td>地面</td><td>2216</td><td>靴底最低点回算落地补偿</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="palette" class="wrap">
+  <div class="sechead">
+    <span class="idx">05</span><h2>色卡 · PALETTE</h2>
+    <span class="en">LOCKED RATIO</span>
+  </div>
+
+  <div class="palette">
+    <div class="sw"><div class="chip" style="background:#05070A"></div><div class="meta"><b>INK</b><span>#05070A · 62%</span></div></div>
+    <div class="sw"><div class="chip" style="background:#F4F8FA"></div><div class="meta"><b>WHITE</b><span>#F4F8FA · 14%</span></div></div>
+    <div class="sw"><div class="chip" style="background:#151F29"></div><div class="meta"><b>INK-3</b><span>#151F29 · 12%</span></div></div>
+    <div class="sw"><div class="chip" style="background:#EBBFAB"></div><div class="meta"><b>SKIN</b><span>#EBBFAB · 8%</span></div></div>
+    <div class="sw"><div class="chip" style="background:#00E5B0"></div><div class="meta"><b>CY</b><span>#00E5B0 · 3%</span></div></div>
+    <div class="sw"><div class="chip" style="background:#00A98A"></div><div class="meta"><b>CY-DEEP</b><span>#00A98A · 线稿</span></div></div>
+    <div class="sw"><div class="chip" style="background:#7C5CFF"></div><div class="meta"><b>PU</b><span>#7C5CFF · 0.8%</span></div></div>
+    <div class="sw"><div class="chip" style="background:#FF3E5C"></div><div class="meta"><b>RD</b><span>#FF3E5C · 0.2%</span></div></div>
+    <div class="sw"><div class="chip" style="background:#1E2A36"></div><div class="meta"><b>INK-4</b><span>#1E2A36 · 结构</span></div></div>
+    <div class="sw"><div class="chip" style="background:#AEBFCB"></div><div class="meta"><b>GREY</b><span>#AEBFCB · 注释</span></div></div>
+  </div>
+
+  <div class="ratio">
+    <i style="width:62%;background:#F4F8FA"></i>
+    <i style="width:14%;background:#151F29"></i>
+    <i style="width:12%;background:#EBBFAB"></i>
+    <i style="width:8%;background:#00E5B0"></i>
+    <i style="width:4%;background:#7C5CFF"></i>
+  </div>
+  <div class="ratio-key">
+    <span>INK / WHITE 62 : 14</span><span>INK-3 12</span><span>SKIN 8</span><span>CY 3</span><span>PU 0.8</span><span>RD 0.2</span>
+  </div>
+  <p style="color:var(--grey2);font-size:12px;margin-top:20px">
+    验收口径：把任意两页并排，量头顶到下巴的像素高度，误差超过 3% 就算没做完。
+  </p>
+</section>
+
+<section id="docs" class="wrap">
+  <div class="sechead">
+    <span class="idx">06</span><h2>设定文档</h2>
+    <span class="en">SPECIFICATION DOCS</span>
+  </div>
+  <div class="docs">
+    <a class="doc" href="https://github.com/yangyang2857-rgb/marvis-persona-spec/blob/main/docs/persona-spec-v3.md" target="_blank" rel="noopener">
+      <div class="p">docs/persona-spec-v3.md</div><div class="n">人格执行规范 v3</div><div class="d">角色人格基线、行为边界与执行条款</div>
+    </a>
+    <a class="doc" href="https://github.com/yangyang2857-rgb/marvis-persona-spec/blob/main/docs/fault-bloom.md" target="_blank" rel="noopener">
+      <div class="p">docs/fault-bloom.md</div><div class="n">Fault Bloom 设计哲学</div><div class="d">网格归零、锚点语法与四个版面的分工</div>
+    </a>
+    <a class="doc" href="https://github.com/yangyang2857-rgb/marvis-persona-spec/blob/main/docs/ci.md" target="_blank" rel="noopener">
+      <div class="p">docs/ci.md</div><div class="n">一致性门禁接入说明</div><div class="d">persona-lint 与硬门禁的接线方式</div>
+    </a>
+    <a class="doc" href="https://github.com/yangyang2857-rgb/marvis-persona-spec/blob/main/docs/research/01-ai-persona-report.md" target="_blank" rel="noopener">
+      <div class="p">docs/research/01-ai-persona-report.md</div><div class="n">AI 拟人形象研究报告</div><div class="d">形象可信度与拟人化的调研底稿</div>
+    </a>
+    <a class="doc" href="https://github.com/yangyang2857-rgb/marvis-persona-spec/blob/main/docs/research/02-consistency-handbook.md" target="_blank" rel="noopener">
+      <div class="p">docs/research/02-consistency-handbook.md</div><div class="n">角色一致性工程手册</div><div class="d">跨视图一致性的工程量化解法</div>
+    </a>
+    <a class="doc" href="https://github.com/yangyang2857-rgb/marvis-persona-spec/blob/main/docs/research/04-ip-next-step.md" target="_blank" rel="noopener">
+      <div class="p">docs/research/04-ip-next-step.md</div><div class="n">可执行 IP 下一步</div><div class="d">关系门槛与代价的取舍</div>
+    </a>
+  </div>
+  <p style="margin-top:22px;color:var(--grey2);font-size:12px">
+    设定正文以仓库内 Markdown 为准；本页只做视觉呈现与索引。
+  </p>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <div class="row">
+    <span class="lic mono">DOCS &amp; VISUALS · CC BY-NC-ND 4.0</span>
+    <span class="lic mono">CODE · MIT</span>
+    <a class="mono" href="https://github.com/yangyang2857-rgb/marvis-persona-spec" target="_blank" rel="noopener" style="font-size:10px">github.com/yangyang2857-rgb/marvis-persona-spec</a>
+  </div>
+  <p>
+    本页图像为矢量生成资产，原始文件保留生成元数据；二次使用请遵循 CC BY-NC-ND 4.0（署名 · 非商业 · 禁止演绎）。
+    角色形象为独立原创设定，与任何既有作品角色无隶属关系。
+  </p>
+</footer>
+
+<div id="lb"><span class="x">CLOSE ×</span><img alt=""></div>
+<script>
+(function(){
+  var lb=document.getElementById('lb'), img=lb.querySelector('img');
+  document.querySelectorAll('[data-lb]').forEach(function(a){
+    a.addEventListener('click',function(e){e.preventDefault();img.src=a.getAttribute('href');lb.classList.add('on');});
+  });
+  lb.addEventListener('click',function(){lb.classList.remove('on');img.src='';});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){lb.classList.remove('on');img.src='';}});
+})();
+</script>
+</body>
+</html>
