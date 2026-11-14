@@ -96,6 +96,9 @@ tools/
 
 .github/workflows/
   persona-lint.yml            两段式 CI
+
+CITATION.cff                  引用格式
+LICENSE-DOCS.md               文档与视觉资产授权（CC BY-NC-ND 4.0）
 ```
 
 ---
@@ -145,4 +148,32 @@ Visual system: **Fault Bloom** — composition grows from the cross-section of a
 
 ## License
 
-MIT © Wang Sunyang
+本仓库**分层授权**，请按用途区分：
+
+| 部分 | 路径 | 协议 | 含义 |
+|---|---|---|---|
+| 代码 | `tools/`, `.github/` | **MIT** | 随便用、随便改、可商用 |
+| 文档与视觉 | `README.md`, `docs/`, `assets/` | **CC BY-NC-ND 4.0** | 可转载，须署名 + 原链接；**禁止商用、禁止演绎** |
+
+简单说：**工具拿去用没问题；这份规范和研究内容，可以转发，别改头换面当成自己的，也别拿去卖。**
+
+- 全文见 [LICENSE-DOCS.md](LICENSE-DOCS.md)
+- 引用格式见 [CITATION.cff](CITATION.cff)
+- 翻译、改编、商业授权：开个 Issue 说明用途，我倾向于同意
+
+© 2026 Wang Sunyang
+
+---
+
+## License (English)
+
+**Split licensing.**
+
+Code (`tools/`, `.github/`) is **MIT** — use it, modify it, ship it commercially.
+
+Documentation and visual assets (`README.md`, `docs/`, `assets/`) are
+**CC BY-NC-ND 4.0** — share freely with attribution; no commercial use, no derivative works.
+
+For translation, adaptation, or commercial licensing, open an Issue.
+
+© 2026 Wang Sunyang

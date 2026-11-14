@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "引用本规范或研究内容时，请使用以下格式。若需翻译、改编或商业使用，请先通过仓库 Issue 联系取得授权。"
+title: "Marvis 人格执行规范 v3 与 Fault Bloom 视觉系统"
+abstract: >-
+  一套可被程序检查的 AI 人格规范：10 个台词位 × 3 档承受状态构成 30 格台词矩阵，
+  20 条禁句、三条不变量（L0 锚点）、零依赖 lint 检查器与两段式 CI 门禁。
+  附 Fault Bloom 视觉设计哲学、三页标本册，以及 AI 拟人形象、角色一致性、
+  可执行 IP 路径的四份研究报告。
+authors:
+  - family-names: "Wang"
+    given-names: "Sunyang"
+    alias: "yangyang2857-rgb"
+    website: "https://yangyang2857-rgb.github.io"
+version: "3.0.0"
+date-released: "2026-11-14"
+license: "CC-BY-NC-ND-4.0"
+license-url: "https://github.com/yangyang2857-rgb/marvis-persona-spec/blob/main/LICENSE-DOCS.md"
+repository-code: "https://github.com/yangyang2857-rgb/marvis-persona-spec"
+url: "https://github.com/yangyang2857-rgb/marvis-persona-spec"
+keywords:
+  - persona spec
+  - ai agent personality
+  - design system
+  - fault bloom
+  - linter
+  - prompt engineering
+  - character consistency
+type: software
