@@ -1,0 +1,84 @@
+name: persona-lint
+
+# Marvis 人格执行规范 v3 · 禁止词门禁
+# 阶段一（默认）：只出报告，永不阻塞 —— 用于观测命中基线
+# 阶段二：把 PERSONA_LINT_BLOCKING 改为 "true"，命中即挂
+
+on:
+  pull_request:
+    paths:
+      - "**/*.kt"
+      - "**/*.java"
+      - "**/*.xml"
+      - "**/*.ts"
+      - "**/*.tsx"
+      - "**/*.js"
+      - "**/*.py"
+      - "**/*.dart"
+      - "**/*.swift"
+      - "**/*.json"
+      - "tools/marvis_lint.py"
+      - ".github/workflows/persona-lint.yml"
+  push:
+    branches: [main, master]
+    paths:
+      - "**/*.kt"
+      - "**/*.java"
+      - "**/*.xml"
+      - "**/*.ts"
+      - "**/*.tsx"
+      - "**/*.js"
+      - "**/*.py"
+  workflow_dispatch:
+
+concurrency:
+  group: persona-lint-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # ⚠️ 灰阶期保持 "false"。观测满两周、命中收敛后再改 "true"。
+  PERSONA_LINT_BLOCKING: "false"
+
+jobs:
+  persona:
+    name: 人格文案检查
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: 检出
+        uses: actions/checkout@v4
+
+      - name: 准备 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # 第一步：永远生成报告，写进 Job Summary（PR 页面直接可见）
+      - name: 生成报告（不阻塞）
+        run: |
+          if [ "$PERSONA_LINT_BLOCKING" = "true" ]; then
+            echo "当前阶段：**阻塞**（命中即挂）" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "当前阶段：**灰阶观测**（只报告，不阻塞）" >> "$GITHUB_STEP_SUMMARY"
+          fi
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          python tools/marvis_lint.py --path . --summary --warn-only
+
+      # 第二步：只有开启阻塞后才会真正失败
+      - name: 门禁判定
+        if: ${{ env.PERSONA_LINT_BLOCKING == 'true' }}
+        run: python tools/marvis_lint.py --path .
+
+      # 兜底：无论成败都留一份机器可读结果，便于后续拉趋势
+      - name: 导出 JSON
+        if: always()
+        run: python tools/marvis_lint.py --path . --json --warn-only > persona-lint.json || true
+
+      - name: 上传 JSON
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: persona-lint-${{ github.run_number }}
+          path: persona-lint.json
+          retention-days: 30

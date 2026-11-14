@@ -1,0 +1,26 @@
+#!/bin/sh
+# Marvis 人格 lint · 本地 pre-commit 钩子
+# 安装：cp MARVIS_09_pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+# 跳过：git commit --no-verify
+
+REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0
+cd "$REPO_ROOT" || exit 0
+
+if [ ! -f tools/marvis_lint.py ]; then
+  exit 0
+fi
+
+PY=""
+for c in python3 python; do
+  if command -v "$c" >/dev/null 2>&1; then PY="$c"; break; fi
+done
+[ -z "$PY" ] && exit 0
+
+echo "[persona-lint] 检查人格文案…"
+if "$PY" tools/marvis_lint.py --path . ; then
+  exit 0
+fi
+
+echo ""
+echo "[persona-lint] 有禁句。改完再提交，或用 git commit --no-verify 跳过这一次。"
+exit 1
