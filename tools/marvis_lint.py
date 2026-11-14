@@ -130,6 +130,7 @@ def emit_summary(records, scanned, root, exempt=None):
         lines.append("")
 
     md = "\n".join(lines)
+    print(md)  # 终端与 Actions 日志同步留一份，Summary 写失败时也能审计
     target = os.environ.get("GITHUB_STEP_SUMMARY")
     if target:
         try:
