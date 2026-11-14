@@ -47,8 +47,9 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  # ⚠️ 灰阶期保持 "false"。观测满两周、命中收敛后再改 "true"。
-  PERSONA_LINT_BLOCKING: "false"
+  # 2026-11-14 起开启硬门禁：存量已清零（全仓零命中），命中即挂。
+  # 回退到灰阶观测只需改回 "false"，无需动脚本。
+  PERSONA_LINT_BLOCKING: "true"
 
 jobs:
   persona:
