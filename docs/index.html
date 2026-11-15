@@ -1,327 +1,623 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-Hans">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MARVIS · FAULT BLOOM — 角色设定集</title>
-<meta name="description" content="Marvis 角色设定集 Fault Bloom：三视图、姿态、部件与色卡、表情差分，基于统一基准网格的矢量角色规范。">
+<title data-i18n="meta.title">MARVIS · FAULT BLOOM — 角色设定集</title>
+<meta name="description" data-i18n-attr="content:meta.desc" content="Marvis 角色设定集 Fault Bloom：三视图、姿态、部件与色卡、表情差分，基于统一基准网格的矢量角色规范。">
+<meta name="theme-color" content="#05070A">
+<link rel="preload" href="fonts/BarlowCondensed-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/SpaceMono-400.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face{font-family:"Barlow Condensed";src:url("fonts/BarlowCondensed-500.woff2") format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Barlow Condensed";src:url("fonts/BarlowCondensed-700.woff2") format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Space Mono";src:url("fonts/SpaceMono-400.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Space Mono";src:url("fonts/SpaceMono-700.woff2") format("woff2");font-weight:700;font-display:swap}
 :root{
   --ink:#05070A; --ink2:#0A1015; --ink3:#151F29; --ink4:#1E2A36;
-  --white:#F4F8FA; --grey:#AEBFCB; --grey2:#3D4A57;
+  --wh:#F4F8FA; --grey:#AEBFCB; --grey2:#71838F;
   --cy:#00E5B0; --cy2:#00A98A; --cy3:#00705D;
   --pu:#7C5CFF; --rd:#FF3E5C; --skin:#EBBFAB;
-  --mono:ui-monospace,"SFMono-Regular",Menlo,"JetBrains Mono","Roboto Mono",monospace;
-  --sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
-  --max:1180px;
+  --line:rgba(244,248,250,.14); --line2:rgba(244,248,250,.07);
+  --display:"Barlow Condensed","Helvetica Neue",Arial,sans-serif;
+  --mono:"Space Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",
+         "Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP","Apple SD Gothic Neo",
+         "Noto Sans KR",system-ui,sans-serif;
+  --max:1180px; --gut:28px;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{
-  margin:0;background:var(--ink);color:var(--white);font-family:var(--sans);
-  -webkit-font-smoothing:antialiased;line-height:1.75;
+  margin:0;background:var(--ink);color:var(--wh);font-family:var(--sans);
+  font-size:15px;line-height:1.8;-webkit-font-smoothing:antialiased;
   background-image:
-    linear-gradient(rgba(0,229,176,.045) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,229,176,.045) 1px,transparent 1px);
-  background-size:80px 80px,80px 80px;
-  background-position:center top;
+    linear-gradient(var(--line2) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line2) 1px,transparent 1px);
+  background-size:120px 120px,120px 120px;background-position:center 0;
+  overflow-x:hidden;
 }
-a{color:var(--cy);text-decoration:none;border-bottom:1px solid rgba(0,229,176,.28);transition:.2s}
-a:hover{color:var(--white);border-bottom-color:var(--white)}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
-.mono{font-family:var(--mono);letter-spacing:.14em;text-transform:uppercase;font-size:11px}
+::selection{background:var(--cy);color:#00120D}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--gut)}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.12em}
+:focus-visible{outline:2px solid var(--cy);outline-offset:3px}
+
+/* ---------- progress ---------- */
+#prog{position:fixed;top:0;left:0;right:0;height:2px;z-index:70;pointer-events:none}
+#progBar{display:block;height:100%;background:linear-gradient(90deg,var(--cy3),var(--cy),var(--pu));transform:scaleX(0);transform-origin:0 50%;transition:transform .12s linear}
 
 /* ---------- header ---------- */
-header{
-  position:sticky;top:0;z-index:50;background:rgba(5,7,10,.82);
-  backdrop-filter:blur(12px);border-bottom:1px solid rgba(244,248,250,.08);
-}
-.nav{display:flex;align-items:center;gap:26px;height:58px}
-.brand{font-family:var(--mono);font-size:12px;letter-spacing:.3em;color:var(--white);border:0}
-.brand b{color:var(--cy);font-weight:600}
-.nav nav{display:flex;gap:22px;margin-left:auto;flex-wrap:wrap}
-.nav nav a{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--grey);border:0}
-.nav nav a:hover{color:var(--cy)}
+header{position:sticky;top:0;z-index:60;background:rgba(5,7,10,.72);backdrop-filter:blur(14px) saturate(1.1);transition:border-color .3s,background .3s;border-bottom:1px solid transparent}
+header.is-stuck{border-bottom-color:var(--line);background:rgba(5,7,10,.93)}
+.bar{display:flex;align-items:center;gap:26px;height:66px}
+.mark{display:flex;align-items:baseline;gap:10px;flex:none}
+.mark b{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.28em;display:inline-flex;align-items:center;gap:9px}
+.mark b:before{content:"";width:6px;height:6px;flex:none;background:var(--cy);box-shadow:0 0 12px rgba(0,229,176,.55)}
+.mark i{font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--grey2)}
+.nav{display:flex;gap:22px;margin-left:auto;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth}
+.nav::-webkit-scrollbar{display:none}
+.nav a{font-size:13.5px;color:var(--grey);padding:14px 0;position:relative;flex:none;transition:color .2s}
+.nav a:after{content:"";position:absolute;left:0;right:0;bottom:10px;height:1px;background:var(--cy);transform:scaleX(0);transform-origin:0 50%;transition:transform .25s ease}
+.nav a:hover,.nav a.on{color:var(--wh)}
+.nav a:hover:after,.nav a.on:after{transform:scaleX(1)}
+
+/* ---------- language popover ---------- */
+.langbox{position:relative;flex:none}
+.langbtn{appearance:none;display:inline-flex;align-items:center;gap:9px;background:transparent;
+  border:1px solid var(--line);color:var(--grey);padding:8px 12px;min-height:40px;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.14em;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+.langbtn:hover,.langbtn[aria-expanded="true"]{border-color:rgba(0,229,176,.5);color:var(--wh);background:rgba(0,229,176,.05)}
+.langbtn .cur{color:var(--cy);font-weight:700}
+.langbtn .caret{width:6px;height:6px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg) translateY(-1px);transition:transform .25s}
+.langbtn[aria-expanded="true"] .caret{transform:rotate(225deg) translateY(-2px)}
+.langmenu{position:absolute;top:calc(100% + 7px);right:0;min-width:246px;background:#080C11;border:1px solid var(--line);
+  box-shadow:0 22px 48px rgba(0,0,0,.6);max-height:min(70vh,430px);overflow:auto;z-index:80}
+.langmenu button{appearance:none;display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:10px;
+  width:100%;background:transparent;border:0;border-bottom:1px solid var(--line2);color:var(--grey);
+  padding:9px 12px;text-align:left;cursor:pointer;transition:background .18s,color .18s}
+.langmenu button:last-child{border-bottom:0}
+.langmenu button:hover{background:rgba(0,229,176,.06);color:var(--wh)}
+.langmenu button[aria-selected="true"]{background:rgba(0,229,176,.1);color:var(--wh)}
+.langmenu .code{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--cy3)}
+.langmenu button[aria-selected="true"] .code{color:var(--cy)}
+.langmenu .nat{font-size:13.5px;white-space:nowrap}
+.langmenu .en{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--grey2);white-space:nowrap}
 
 /* ---------- hero ---------- */
-.hero{padding:96px 0 72px;border-bottom:1px solid rgba(244,248,250,.07);position:relative;overflow:hidden}
-.hero:after{
-  content:"";position:absolute;right:-160px;top:-120px;width:520px;height:520px;
-  background:radial-gradient(circle at center,rgba(0,229,176,.14),transparent 62%);
-  pointer-events:none;
-}
-.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.34em;color:var(--cy)}
-.hero h1{
-  font-size:clamp(44px,8vw,96px);line-height:.95;margin:22px 0 0;letter-spacing:-.02em;font-weight:700;
-}
-.hero h1 .thin{font-weight:200;color:var(--grey)}
-.hero .cn{font-size:clamp(18px,2.4vw,26px);color:var(--grey);margin-top:18px;letter-spacing:.34em}
-.lede{max-width:640px;color:var(--grey);margin-top:26px;font-size:15px}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
-.tag{
-  font-family:var(--mono);font-size:10px;letter-spacing:.16em;padding:6px 11px;
-  border:1px solid rgba(244,248,250,.16);color:var(--grey);border-radius:1px;
-}
-.tag.cy{border-color:rgba(0,229,176,.45);color:var(--cy)}
+.hero{padding-block:76px 58px;position:relative}
+.hero:before,.hero:after{content:"";position:absolute;width:13px;height:13px;pointer-events:none;opacity:.5}
+.hero:before{top:30px;left:-3px;border-top:1px solid var(--cy3);border-left:1px solid var(--cy3)}
+.hero:after{top:30px;right:-3px;border-top:1px solid var(--cy3);border-right:1px solid var(--cy3)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 46px 286px;column-gap:34px;align-items:end}
+.kicker{margin:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.32em;color:var(--cy);text-transform:uppercase}
+.hero h1{font-family:var(--display);font-weight:700;font-size:clamp(52px,9vw,108px);line-height:.86;
+  margin:18px 0 0;letter-spacing:-.005em;text-transform:uppercase}
+.hero h1 s{text-decoration:none;color:transparent;-webkit-text-stroke:1px rgba(244,248,250,.42)}
+.sub{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:16px 0 0}
+.sub b{font-size:clamp(17px,2.2vw,22px);font-weight:600;letter-spacing:.3em}
+.sub s{text-decoration:none;font-family:var(--mono);font-size:10px;letter-spacing:.24em;color:var(--grey2);text-transform:uppercase}
+.lede{max-width:60ch;color:var(--grey);margin:22px 0 0;font-size:14.5px;line-height:1.95}
+.tags{list-style:none;display:flex;flex-wrap:wrap;gap:7px;margin:24px 0 0;padding:0}
+.tags span{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;padding:5px 10px;
+  border:1px solid var(--line);color:var(--grey);white-space:nowrap}
+.tags span.cy{border-color:rgba(0,229,176,.42);color:var(--cy)}
+.dim{position:relative;align-self:stretch;min-height:210px;display:flex;align-items:stretch;gap:11px;justify-content:flex-end}
+.dim:before,.dim:after{content:"";width:5px;height:5px;background:var(--cy);opacity:.8;position:absolute;right:0}
+.dim:before{top:0}.dim:after{bottom:0}
+.dim .line{width:1px;background:var(--line);position:relative}
+.dim .line:before,.dim .line:after{content:"";position:absolute;left:-4px;width:9px;height:1px;background:var(--cy)}
+.dim .line:before{top:0}.dim .line:after{bottom:0}
+.dim .cap{writing-mode:vertical-rl;font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--cy);align-self:center}
+.tblock{border:1px solid var(--line);background:rgba(10,16,21,.72)}
+.tblock .tb-h{display:flex;align-items:baseline;gap:8px;padding:10px 13px;border-bottom:1px solid var(--line)}
+.tblock .tb-h b{font-family:var(--mono);font-size:10px;letter-spacing:.26em;color:var(--cy)}
+.tblock .tb-h span{font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--grey2);margin-left:auto}
+.tblock dl{margin:0;display:grid;grid-template-columns:1fr 1fr}
+.tblock dl>div{border-top:1px solid var(--line2);border-left:1px solid var(--line2);padding:8px 12px}
+.tblock dl>div:nth-child(1),.tblock dl>div:nth-child(2){border-top:0}
+.tblock dl>div:nth-child(odd){border-left:0}
+.tblock dt{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--grey2);margin:0}
+.tblock dd{margin:2px 0 0;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--wh)}
+.tblock dd.cy{color:var(--cy)}
+.strip{display:grid;grid-template-columns:repeat(4,auto);justify-content:start;gap:0 34px;
+  margin:30px 0 0;padding:14px 0 0;border-top:1px solid var(--line2)}
+.strip>div{display:flex;align-items:baseline;gap:7px}
+.strip dt{margin:0;font-family:var(--display);font-weight:700;font-size:26px;line-height:1;color:var(--wh)}
+.strip dt small{font-size:11px;font-weight:400;color:var(--grey2);margin-left:1px}
+.strip dd{margin:0;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--grey2);text-transform:uppercase}
 
-/* ---------- section ---------- */
-section{padding:78px 0;border-bottom:1px solid rgba(244,248,250,.07)}
-.sechead{display:flex;align-items:baseline;gap:16px;margin-bottom:38px}
-.sechead .idx{font-family:var(--mono);font-size:12px;color:var(--cy2);letter-spacing:.2em}
-.sechead h2{font-size:clamp(22px,3.2vw,32px);margin:0;letter-spacing:.06em;font-weight:600}
-.sechead .en{font-family:var(--mono);font-size:10px;letter-spacing:.26em;color:var(--grey2);margin-left:auto;text-align:right}
-.sechead:after{content:"";flex:1;height:1px;background:rgba(244,248,250,.1);align-self:center;order:-1;display:none}
-.sechead{position:relative;padding-bottom:14px;border-bottom:1px solid rgba(244,248,250,.1)}
+/* ---------- section head ---------- */
+section{padding-block:74px;border-top:1px solid var(--line2);scroll-margin-top:76px}
+.shead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding-bottom:13px;border-bottom:1px solid var(--line);margin-bottom:34px}
+.shead .idx{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--cy3)}
+.shead h2{margin:0;font-size:clamp(20px,2.9vw,29px);letter-spacing:.05em;font-weight:600}
+.shead .en{font-family:var(--mono);font-size:9.5px;letter-spacing:.24em;color:var(--grey2);margin-left:auto;text-transform:uppercase}
+.shead .cnt{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--cy3)}
 
 /* ---------- plates ---------- */
-.plates{display:grid;gap:26px}
-.plate{border:1px solid rgba(244,248,250,.12);background:var(--ink2);position:relative}
-.plate .frame{position:relative;display:block;overflow:hidden;line-height:0}
-.plate img{width:100%;height:auto;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
-.plate:hover img{transform:scale(1.012)}
-.plate .cap{display:flex;gap:14px;align-items:baseline;padding:14px 18px;border-top:1px solid rgba(244,248,250,.1)}
-.plate .cap .no{font-family:var(--mono);font-size:11px;color:var(--cy);letter-spacing:.2em}
-.plate .cap .t{font-size:14px}
-.plate .cap .d{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--grey2);margin-left:auto}
-.corner{position:absolute;width:12px;height:12px;border:1px solid var(--cy);opacity:.5;pointer-events:none}
-.corner.tl{top:-1px;left:-1px;border-right:0;border-bottom:0}
-.corner.tr{top:-1px;right:-1px;border-left:0;border-bottom:0}
-.corner.bl{bottom:-1px;left:-1px;border-right:0;border-top:0}
-.corner.br{bottom:-1px;right:-1px;border-left:0;border-top:0}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.plate{display:grid;grid-template-columns:72px minmax(0,1fr);gap:18px;margin-bottom:32px}
+.plate .gut{padding-top:2px}
+.plate .gut .no{font-family:var(--display);font-weight:700;font-size:38px;line-height:1;color:rgba(244,248,250,.9);transition:color .3s}
+.plate:hover .gut .no{color:var(--cy)}
+.plate .gut .vt{writing-mode:vertical-rl;margin-top:10px;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--grey2);max-height:140px;overflow:hidden}
+figure{margin:0;position:relative;border:1px solid var(--line);background:var(--ink2);transition:border-color .3s}
+figure:hover{border-color:rgba(0,229,176,.42)}
+figure .shot{display:block;position:relative;overflow:hidden;line-height:0}
+figure .shot:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 62%,rgba(5,7,10,.4));opacity:0;transition:opacity .3s}
+figure:hover .shot:after{opacity:1}
+figure img{width:100%;aspect-ratio:3000/2100;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.8,.2,1),filter .4s}
+figure:hover img{transform:scale(1.008);filter:brightness(1.03)}
+figure .open{position:absolute;right:0;bottom:0;padding:6px 11px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.12em;color:var(--cy);background:rgba(5,7,10,.86);border-top:1px solid var(--line);border-left:1px solid var(--line);
+  opacity:0;transform:translateY(4px);transition:opacity .25s,transform .25s}
+figure:hover .open{opacity:1;transform:none}
+figcaption{display:flex;gap:14px;align-items:baseline;padding:12px 15px;border-top:1px solid var(--line2);flex-wrap:wrap}
+figcaption b{font-size:14px;font-weight:600}
+figcaption span{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--grey2);margin-left:auto}
+.platenote{margin:6px 0 0 90px;font-size:12px;color:var(--grey2);max-width:70ch}
 
 /* ---------- rules ---------- */
-.rules{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(244,248,250,.1)}
-.rule{background:var(--ink);padding:30px 28px}
-.rule .n{font-family:var(--mono);font-size:11px;color:var(--cy2);letter-spacing:.22em}
-.rule h3{margin:12px 0 10px;font-size:17px;letter-spacing:.04em}
-.rule p{margin:0;color:var(--grey);font-size:14px}
+.rules{display:grid;grid-template-columns:1fr 1fr}
+.rule{padding:32px 42px 30px 0;border-bottom:1px solid var(--line2);position:relative}
+.rule:nth-child(odd){border-right:1px solid var(--line2);padding-right:48px}
+.rule:nth-child(even){padding-left:48px}
+.rule:after{content:"";position:absolute;left:0;bottom:-1px;width:0;height:1px;background:var(--cy);transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.rule:hover:after{width:100%}
+.rule:nth-child(even):after{left:48px}
+.rule:nth-child(even):hover:after{width:calc(100% - 48px)}
+.rule em{font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:var(--cy2);display:block;margin-bottom:12px}
+.rule h3{margin:0 0 10px;font-size:17px;font-weight:600;letter-spacing:.03em}
+.rule p{margin:0;color:var(--grey);font-size:13.8px;line-height:1.95;max-width:44ch}
 
 /* ---------- anchors ---------- */
-.anchor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
-.anchor{border-left:2px solid rgba(0,229,176,.35);padding:2px 0 2px 18px}
-.anchor .h{display:flex;align-items:baseline;gap:10px}
-.anchor .h b{font-size:15px;font-weight:600}
-.anchor .h span{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--grey2)}
-.anchor p{margin:6px 0 0;font-size:13px;color:var(--grey)}
+.anchors{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line2);border-left:1px solid var(--line2)}
+.anchor{padding:24px 22px;border-right:1px solid var(--line2);border-bottom:1px solid var(--line2);transition:background .25s}
+.anchor:hover{background:rgba(0,229,176,.03)}
+.anchor svg{display:block;width:28px;height:28px;margin-bottom:14px;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.anchor:hover svg{transform:translateY(-2px)}
+.anchor h3{margin:0;font-size:14.5px;font-weight:600;letter-spacing:.03em;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.anchor h3 span{font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--grey2);font-weight:400}
+.anchor p{margin:7px 0 0;font-size:12.5px;color:var(--grey);line-height:1.8}
+
+/* ---------- datum ---------- */
+.datum{display:grid;grid-template-columns:minmax(0,1fr) 196px;gap:52px;margin-top:56px;align-items:start}
+.datum h3{margin:0 0 12px;font-size:16px;font-weight:600;letter-spacing:.04em}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{text-align:left;padding:10px 14px 10px 0;border-bottom:1px solid var(--line2);vertical-align:baseline}
+th{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;color:var(--cy2);font-weight:400;text-transform:uppercase}
+tbody tr{transition:background .2s}
+tbody tr:hover{background:rgba(0,229,176,.035)}
+td:first-child{color:var(--wh);white-space:nowrap;width:32%}
+td:nth-child(2){font-family:var(--mono);font-size:12px;color:var(--cy);width:20%;transition:color .2s}
+tbody tr:hover td:nth-child(2){color:var(--wh)}
+td{color:var(--grey)}
+.scale{border:1px solid var(--line);background:rgba(10,16,21,.6);padding:16px}
+.scale .ruler{display:flex;align-items:flex-end;gap:0;height:44px;margin-bottom:10px}
+.scale .ruler i{flex:1;border-left:1px solid var(--line);height:12px}
+.scale .ruler i:nth-child(2n){height:22px}
+.scale .ruler i:nth-child(1){height:32px;border-left-color:var(--cy)}
+.scale .ruler i:nth-child(11){height:32px;border-left-color:var(--cy)}
+.scale p{margin:0;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;color:var(--grey2);line-height:1.9}
+.scale p b{color:var(--cy);font-weight:700}
 
 /* ---------- palette ---------- */
-.palette{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(244,248,250,.1);margin-top:34px}
-.sw{background:var(--ink2);padding:0}
-.sw .chip{height:78px}
-.sw .meta{padding:12px 14px;border-top:1px solid rgba(244,248,250,.09)}
-.sw .meta b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.2em}
-.sw .meta span{font-family:var(--mono);font-size:10px;color:var(--grey2);letter-spacing:.1em}
-.ratio{margin-top:18px;height:10px;display:flex;border:1px solid rgba(244,248,250,.14)}
+.palette{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.sw{border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--ink2);cursor:pointer;padding:0;
+  transition:background .2s;position:relative;text-align:left;font:inherit;color:inherit}
+.sw:hover{background:rgba(0,229,176,.05)}
+.sw .chip{height:74px;position:relative}
+.sw .chip:after{content:"";position:absolute;inset:0;border:1px solid rgba(5,7,10,.35);pointer-events:none}
+.sw .meta{padding:10px 12px;border-top:1px solid var(--line2)}
+.sw .meta b{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.18em}
+.sw .meta span{display:block;font-family:var(--mono);font-size:9.5px;color:var(--grey2);letter-spacing:.06em;margin-top:2px}
+.sw .meta i{font-style:normal}
+.ratio{margin-top:18px;height:9px;display:flex;border:1px solid var(--line)}
 .ratio i{display:block;height:100%}
-.ratio-key{display:flex;flex-wrap:wrap;gap:18px;margin-top:14px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--grey2)}
+.ratio-key{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;color:var(--grey2)}
+.palnote{color:var(--grey2);font-size:12px;margin:18px 0 0;max-width:70ch}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,14px);background:var(--cy);color:#00120D;
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;padding:9px 16px;opacity:0;pointer-events:none;
+  transition:opacity .25s,transform .25s;z-index:120}
+.toast.on{opacity:1;transform:translate(-50%,0)}
 
-/* ---------- table ---------- */
-table{width:100%;border-collapse:collapse;font-size:14px}
-th,td{text-align:left;padding:14px 16px;border-bottom:1px solid rgba(244,248,250,.09);vertical-align:top}
-th{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--cy2);font-weight:400;text-transform:uppercase}
-td:first-child{color:var(--white);white-space:nowrap}
-td{color:var(--grey)}
-
-/* ---------- docs list ---------- */
-.docs{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(244,248,250,.1)}
-.doc{background:var(--ink);padding:22px 24px;display:block;border:0;transition:.2s}
-.doc:hover{background:var(--ink3)}
-.doc .p{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--cy3)}
-.doc .n{font-size:15px;margin-top:6px;color:var(--white)}
-.doc .d{font-size:13px;color:var(--grey);margin-top:4px}
+/* ---------- docs ---------- */
+.docs{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line2)}
+.doc{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 18px;align-items:baseline;
+  padding:18px 16px 18px 0;border-bottom:1px solid var(--line2);transition:padding .25s,background .25s;position:relative}
+.doc:nth-child(odd){border-right:1px solid var(--line2)}
+.doc:nth-child(even){padding-left:20px}
+.doc:hover{background:rgba(0,229,176,.035)}
+.doc .p{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--cy3);grid-column:1/-1}
+.doc .n{font-size:14.5px;color:var(--wh);font-weight:500}
+.doc .d{font-size:12.5px;color:var(--grey2);grid-column:1/-1}
+.doc .ar{font-family:var(--mono);font-size:11px;color:var(--cy);opacity:0;transform:translateX(-4px);transition:opacity .25s,transform .25s;align-self:center}
+.doc:hover .ar{opacity:1;transform:none}
+.docsnote{margin-top:20px;color:var(--grey2);font-size:12px}
 
 /* ---------- footer ---------- */
-footer{padding:56px 0 64px;color:var(--grey2);font-size:12px}
-footer .row{display:flex;flex-wrap:wrap;gap:26px;align-items:baseline}
-footer .lic{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--grey)}
-footer p{max-width:760px;margin:18px 0 0;line-height:1.9}
+footer{border-top:1px solid var(--line);padding-block:46px 60px;color:var(--grey2);font-size:12px}
+footer .row{display:flex;flex-wrap:wrap;gap:22px;align-items:baseline}
+footer .lic{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--grey)}
+footer .spacer{margin-left:auto;display:flex;gap:10px}
+footer p{max-width:78ch;margin:16px 0 0;line-height:1.9}
+.mini{appearance:none;background:transparent;border:1px solid var(--line);color:var(--grey);padding:6px 11px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;cursor:pointer;transition:border-color .2s,color .2s}
+.mini:hover{border-color:rgba(0,229,176,.5);color:var(--cy)}
 
 /* ---------- lightbox ---------- */
-#lb{position:fixed;inset:0;background:rgba(3,5,8,.96);display:none;z-index:100;padding:40px 24px;overflow:auto}
+#lb{position:fixed;inset:0;background:rgba(3,5,8,.97);display:none;z-index:110;padding:56px 22px 22px;overflow:auto}
+body.lb-open{overflow:hidden}
 #lb.on{display:block}
-#lb img{max-width:100%;max-height:88vh;object-fit:contain;margin:0 auto;display:block;border:1px solid rgba(0,229,176,.2)}
-#lb .x{position:fixed;top:18px;right:24px;font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--cy);cursor:pointer}
+#lb img{max-width:100%;max-height:calc(100vh - 96px);object-fit:contain;margin:0 auto;display:block;border:1px solid rgba(0,229,176,.2)}
+#lb .x{position:fixed;top:16px;right:20px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--cy);
+  background:transparent;border:1px solid rgba(0,229,176,.35);padding:11px 14px;min-height:44px;display:inline-flex;align-items:center;cursor:pointer}
+#lb .cap{position:fixed;left:20px;bottom:14px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--grey2)}
 
-@media (max-width:900px){
-  .grid2,.rules,.anchor-grid,.docs{grid-template-columns:1fr}
-  .palette{grid-template-columns:repeat(2,1fr)}
-  .sechead .en{display:none}
-  .hero{padding:64px 0 52px}
-  .nav nav{gap:14px}
-  .nav nav a:nth-child(n+4){display:none}
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:30px}
+  .tblock{grid-column:1}
+  .dim{display:none}
+  .datum{grid-template-columns:1fr;gap:26px}
+  .anchors{grid-template-columns:1fr 1fr}
+  .palette{grid-template-columns:repeat(3,1fr)}
+  .docs{grid-template-columns:1fr}
+  .doc:nth-child(odd){border-right:0}
+  .doc:nth-child(even){padding-left:0}
+}
+@media (max-width:760px){
+  :root{--gut:18px}
+  .bar{height:auto;gap:0 12px;padding-block:2px 0;flex-wrap:wrap}
+  .mark{margin-right:auto}
+  .mark i{display:none}
+  .nav{order:3;flex:1 1 100%;margin-left:0;gap:0 12px;flex-wrap:wrap;justify-content:flex-start;padding:0;border-top:1px solid var(--line2);overflow:visible}
+  .nav a{font-size:12px;letter-spacing:-.005em;padding:0;min-height:44px;min-width:44px;justify-content:center;display:inline-flex;align-items:center;white-space:nowrap}
+  .nav a:after{bottom:0;left:0;right:0}
+  .langbtn{min-height:44px}
+  .langbtn{padding:8px 10px}
+  .langbtn .llbl{display:none}
+  .langmenu{min-width:232px;right:-2px}
+  .hero{padding-block:44px 38px}
+  .hero:before,.hero:after{display:none}
+  .hero h1{font-size:clamp(48px,15vw,78px)}
+  .strip{grid-template-columns:1fr 1fr;gap:10px 18px}
+  .strip dt{font-size:22px}
+  .shead{margin-bottom:26px}
+  .shead .en{display:none}
+  .plate{grid-template-columns:1fr;gap:9px;margin-bottom:26px}
+  .plate .gut{display:flex;align-items:baseline;gap:10px}
+  .plate .gut .no{font-size:26px}
+  .plate .gut .vt{writing-mode:horizontal-tb;margin:0;max-height:none}
+  .platenote{margin-left:0}
+  .rules{grid-template-columns:1fr}
+  .rule{padding:26px 0 24px}
+  .rule:nth-child(odd){border-right:0;padding-right:0}
+  .rule:nth-child(even){padding-left:0}
+  .rule:nth-child(even):after{left:0}
+  .rule p{max-width:none}
+  .anchors{grid-template-columns:1fr}
+  .palette{grid-template-columns:1fr 1fr}
+  .sw .chip{height:60px}
+  section{padding-block:52px;scroll-margin-top:100px}
+  .doc{padding:16px 0}
+  #lb{padding:56px 12px 12px}
+  #lb .x{min-height:44px;padding:11px 14px}
+}
+
+/* ---------- print ---------- */
+@page{size:A4;margin:13mm 12mm}
+@media print{
+  :root{--wh:#0C1116;--grey:#2A3640;--grey2:#5A6A76;--line:#C9D4DB;--line2:#DEE5EA;--cy:#00795E;--cy2:#005E48;--cy3:#005E48}
+  body{background:#fff;background-image:none;font-size:11pt}
+  header,#prog,.nav,.langbox,.mini,.toast,.tags,.dim,#lb,.open{display:none !important}
+  section{padding:16px 0;border-top:1px solid var(--line);break-inside:avoid}
+  .hero{padding:0 0 16px}
+  .plate,figure,.doc,.sw,.rule,.tblock,.anchor{break-inside:avoid}
+  .plate{grid-template-columns:52px 1fr;margin-bottom:14px}
+  figure img{filter:none}
+  a{color:var(--cy3)}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*:before,*:after{animation:none !important;transition:none !important}
 }
 </style>
 </head>
-<body>
+<body data-lang="zh-Hans">
 
-<header>
-  <div class="wrap nav">
-    <a class="brand" href="#top"><b>MARVIS</b> / FAULT BLOOM</a>
-    <nav>
-      <a href="#plates">设定集</a>
-      <a href="#rules">设计规矩</a>
-      <a href="#anchors">锚点</a>
-      <a href="#palette">色卡</a>
-      <a href="#docs">文档</a>
-      <a href="https://github.com/yangyang2857-rgb/marvis-persona-spec" target="_blank" rel="noopener">GitHub</a>
+<div id="prog" aria-hidden="true"><i id="progBar"></i></div>
+
+<header id="hdr">
+  <div class="wrap bar">
+    <a class="mark" href="#top"><b>MARVIS</b><i>FAULT BLOOM</i></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#plates" data-i18n="nav.plates">设定集</a>
+      <a href="#rules" data-i18n="nav.rules">规矩</a>
+      <a href="#anchors" data-i18n="nav.anchors">锚点</a>
+      <a href="#palette" data-i18n="nav.palette">色卡</a>
+      <a href="#docs" data-i18n="nav.docs">文档</a>
     </nav>
+    <div class="langbox" id="langbox">
+      <button class="langbtn" id="langBtn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="langMenu" aria-label="Language">
+        <span class="llbl" data-i18n="ui.lang">语言</span>
+        <span class="cur" id="langCur">简</span>
+        <span class="caret" aria-hidden="true"></span>
+      </button>
+      <div class="langmenu" id="langMenu" role="listbox" aria-label="Language" hidden></div>
+    </div>
   </div>
 </header>
 
 <main id="top">
 
 <div class="wrap hero">
-  <div class="kicker">CHARACTER BIBLE / 故障绽开 · V3</div>
-  <h1>FAULT<br><span class="thin">BLOOM</span></h1>
-  <div class="cn">角 色 设 定 集</div>
-  <p class="lede">
-    一套用坐标说话、不用形容词说话的角色规范。三视图、姿态、部件、表情全部出生于同一张基准网格，
-    锚点（三灯 / 马耳 / 双色挑染）在任何角度都不改写。整套设定集的第一原则不是"更美"，而是"可被测量"。
-  </p>
-  <div class="tags">
-    <span class="tag cy">统一基准网格</span>
-    <span class="tag">5.9 头身</span>
-    <span class="tag">扁平矢量</span>
-    <span class="tag">分块赛璐璐</span>
-    <span class="tag">深黑 / 青绿 / 紫</span>
-    <span class="tag">3000 × 2100</span>
+  <div class="hero-grid">
+    <div class="lead">
+      <p class="kicker" data-i18n="hero.kicker">角色设定集 · 版本 3</p>
+      <h1>FAULT<br><s>BLOOM</s></h1>
+      <p class="sub"><b data-i18n="hero.subcn">故障绽开</b><s data-i18n="hero.suben">Character Bible</s></p>
+      <p class="lede" data-i18n="hero.lede">一套用坐标说话、不用形容词说话的角色规范。三视图、姿态、部件、表情全部出生于同一张基准网格；三灯、马耳、双色挑染三个锚点在任何角度都不改写。这套设定集的第一原则不是更美，而是可被测量。</p>
+      <ul class="tags">
+        <li><span class="cy" data-i18n="hero.tag1">统一基准网格</span></li>
+        <li><span data-i18n="hero.tag2">5.9 头身</span></li>
+        <li><span data-i18n="hero.tag3">扁平矢量</span></li>
+        <li><span data-i18n="hero.tag4">分块赛璐璐</span></li>
+        <li><span data-i18n="hero.tag5">3000 × 2100</span></li>
+        <li><span data-i18n="hero.tag6">深黑 / 青绿 / 紫</span></li>
+      </ul>
+      <dl class="strip">
+        <div><dt>05</dt><dd data-i18n="strip.plates">版面</dd></div>
+        <div><dt>06</dt><dd data-i18n="strip.anchors">锚点</dd></div>
+        <div><dt>06</dt><dd data-i18n="strip.langs">语言</dd></div>
+        <div><dt>3<small>%</small></dt><dd data-i18n="strip.tol">容差</dd></div>
+      </dl>
+    </div>
+
+    <div class="dim" aria-hidden="true">
+      <span class="cap" data-i18n="hero.dim">5.9 头身</span>
+      <div class="line"></div>
+    </div>
+
+    <aside class="tblock" aria-label="Title block">
+      <div class="tb-h"><b>MARVIS</b><span>FAULT BLOOM</span></div>
+      <dl>
+        <div><dt data-i18n="tb.sheet_k">图号</dt><dd>FB-000—004</dd></div>
+        <div><dt data-i18n="tb.scale_k">比例</dt><dd>1 : 1</dd></div>
+        <div><dt data-i18n="tb.base_k">基准</dt><dd>1600 × 2400</dd></div>
+        <div><dt data-i18n="tb.unit_k">单位</dt><dd data-i18n="tb.unit_v">像素 / PX</dd></div>
+        <div><dt data-i18n="tb.lang_k">语言</dt><dd class="cy" id="tbLang">ZH-HANS</dd></div>
+        <div><dt data-i18n="tb.rev_k">版本</dt><dd>V3.0</dd></div>
+      </dl>
+    </aside>
   </div>
 </div>
 
 <section id="plates" class="wrap">
-  <div class="sechead">
-    <span class="idx">01</span><h2>设定集 · 五个版面</h2>
+  <div class="shead">
+    <span class="idx">01</span>
+    <h2 data-i18n="plates.h">设定集 · 五个版面</h2>
+    <span class="cnt">5 / 5</span>
     <span class="en">SHEETS 00—04</span>
   </div>
 
-  <div class="plates">
-    <figure class="plate" style="margin:0">
-      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-      <a class="frame" href="assets/set/MARVIS_SET_00_overview.png" data-lb><img src="assets/set/MARVIS_SET_00_overview.png" alt="总览版面" loading="lazy"></a>
-      <figcaption class="cap"><span class="no">00</span><span class="t">总览 · OVERVIEW</span><span class="d">全系列一眼收束</span></figcaption>
-    </figure>
+  <article class="plate">
+    <div class="gut"><span class="no">00</span><span class="vt">OVERVIEW</span></div>
+    <div>
+      <figure>
+        <a class="shot" href="assets/set/MARVIS_SET_00_overview.png" data-lb data-cap="00" data-i18n-attr="aria-label:pl.00.t">
+          <img src="assets/set/MARVIS_SET_00_overview.png" alt="" data-i18n-attr="alt:pl.00.t" loading="lazy">
+          <span class="open" data-i18n="ui.open">点击放大</span>
+        </a>
+        <figcaption><b data-i18n="pl.00.t">总览 · 全系列一眼收束</b><span>PLATE 00</span></figcaption>
+      </figure>
+      <p class="platenote" data-i18n="pl.00.d">五个版面放在一起时，先看比例是否一致，再看锚点是否在同一高度。</p>
+    </div>
+  </article>
 
-    <figure class="plate" style="margin:0">
-      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-      <a class="frame" href="assets/set/MARVIS_SET_01_three_view.png" data-lb><img src="assets/set/MARVIS_SET_01_three_view.png" alt="三视图" loading="lazy"></a>
-      <figcaption class="cap"><span class="no">01</span><span class="t">三视图 · 证明"同一个人"</span><span class="d">0H—5H 共用参考线</span></figcaption>
-    </figure>
+  <article class="plate">
+    <div class="gut"><span class="no">01</span><span class="vt">THREE VIEW</span></div>
+    <div>
+      <figure>
+        <a class="shot" href="assets/set/MARVIS_SET_01_three_view.png" data-lb data-cap="01" data-i18n-attr="aria-label:pl.01.t">
+          <img src="assets/set/MARVIS_SET_01_three_view.png" alt="" data-i18n-attr="alt:pl.01.t" loading="lazy">
+          <span class="open" data-i18n="ui.open">点击放大</span>
+        </a>
+        <figcaption><b data-i18n="pl.01.t">三视图 · 证明同一个人</b><span>PLATE 01</span></figcaption>
+      </figure>
+      <p class="platenote" data-i18n="pl.01.d">0H—5H 水平参考线横穿三个视图，同一条线落在同一身体位置。</p>
+    </div>
+  </article>
 
-    <figure class="plate" style="margin:0">
-      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-      <a class="frame" href="assets/set/MARVIS_SET_02_pose.png" data-lb><img src="assets/set/MARVIS_SET_02_pose.png" alt="姿态" loading="lazy"></a>
-      <figcaption class="cap"><span class="no">02</span><span class="t">姿态 · 证明锚点不随姿态漂移</span><span class="d">前倾 14° / 跨距 1.94H</span></figcaption>
-    </figure>
+  <article class="plate">
+    <div class="gut"><span class="no">02</span><span class="vt">POSE</span></div>
+    <div>
+      <figure>
+        <a class="shot" href="assets/set/MARVIS_SET_02_pose.png" data-lb data-cap="02" data-i18n-attr="aria-label:pl.02.t">
+          <img src="assets/set/MARVIS_SET_02_pose.png" alt="" data-i18n-attr="alt:pl.02.t" loading="lazy">
+          <span class="open" data-i18n="ui.open">点击放大</span>
+        </a>
+        <figcaption><b data-i18n="pl.02.t">姿态 · 锚点不随姿态漂移</b><span>PLATE 02</span></figcaption>
+      </figure>
+      <p class="platenote" data-i18n="pl.02.d">前倾 14°、跨距 1.94H；四处引线标出三灯、耳、尾接口、靴的偏移量。</p>
+    </div>
+  </article>
 
-    <figure class="plate" style="margin:0">
-      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-      <a class="frame" href="assets/set/MARVIS_SET_03_parts.png" data-lb><img src="assets/set/MARVIS_SET_03_parts.png" alt="部件与色卡" loading="lazy"></a>
-      <figcaption class="cap"><span class="no">03</span><span class="t">部件与色彩 · 把锚点拆开看</span><span class="d">六格放大 / 占比锁定</span></figcaption>
-    </figure>
+  <article class="plate">
+    <div class="gut"><span class="no">03</span><span class="vt">PARTS</span></div>
+    <div>
+      <figure>
+        <a class="shot" href="assets/set/MARVIS_SET_03_parts.png" data-lb data-cap="03" data-i18n-attr="aria-label:pl.03.t">
+          <img src="assets/set/MARVIS_SET_03_parts.png" alt="" data-i18n-attr="alt:pl.03.t" loading="lazy">
+          <span class="open" data-i18n="ui.open">点击放大</span>
+        </a>
+        <figcaption><b data-i18n="pl.03.t">部件与色彩 · 把锚点拆开看</b><span>PLATE 03</span></figcaption>
+      </figure>
+      <p class="platenote" data-i18n="pl.03.d">六格放大：三灯 5.6×、耳 2.3×、尾接口 4.7×、靴 2.0×、领口 5.1×、马尾 1.65×。</p>
+    </div>
+  </article>
 
-    <figure class="plate" style="margin:0">
-      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-      <a class="frame" href="assets/set/MARVIS_SET_04_expression.png" data-lb><img src="assets/set/MARVIS_SET_04_expression.png" alt="表情差分" loading="lazy"></a>
-      <figcaption class="cap"><span class="no">04</span><span class="t">表情 · 把人格装回去</span><span class="d">平静 / 柔和 / 思索 / 警觉</span></figcaption>
-    </figure>
-  </div>
+  <article class="plate">
+    <div class="gut"><span class="no">04</span><span class="vt">EXPRESSION</span></div>
+    <div>
+      <figure>
+        <a class="shot" href="assets/set/MARVIS_SET_04_expression.png" data-lb data-cap="04" data-i18n-attr="aria-label:pl.04.t">
+          <img src="assets/set/MARVIS_SET_04_expression.png" alt="" data-i18n-attr="alt:pl.04.t" loading="lazy">
+          <span class="open" data-i18n="ui.open">点击放大</span>
+        </a>
+        <figcaption><b data-i18n="pl.04.t">表情 · 把人格装回去</b><span>PLATE 04</span></figcaption>
+      </figure>
+      <p class="platenote" data-i18n="pl.04.d">平静 / 柔和 / 思索 / 警觉四种默认神态，附锚点自检表。</p>
+    </div>
+  </article>
 </section>
 
 <section id="rules" class="wrap">
-  <div class="sechead">
-    <span class="idx">02</span><h2>四条规矩</h2>
+  <div class="shead">
+    <span class="idx">02</span>
+    <h2 data-i18n="rules.h">四条规矩</h2>
+    <span class="cnt">01—04</span>
     <span class="en">FOUR RULES</span>
   </div>
+
   <div class="rules">
     <div class="rule">
-      <div class="n">RULE 01</div>
-      <h3>一个网格，四个视图</h3>
-      <p>正面、侧面、背面、动作全部在同一坐标系里出生。面部纵深 0.34W、胸腔厚度 0.41W、马尾根部落在肩线后 0.09W——视图之间不是"分别画"，而是"同一具身体的不同投影"。</p>
+      <em>RULE 01</em>
+      <h3 data-i18n="r1.t">一个网格，四个视图</h3>
+      <p data-i18n="r1.d">正面、侧面、背面、动作全部在同一坐标系里出生。面部纵深 0.34W、胸腔厚度 0.41W、马尾根部落在肩线后 0.09W——视图之间不是分别画，而是同一具身体的不同投影。</p>
     </div>
     <div class="rule">
-      <div class="n">RULE 02</div>
-      <h3>锚点不许翻译</h3>
-      <p>双色挑染、马耳、胸口三灯是不可变项。三灯永远是 CY/PU/RD 横排等距 30px，侧视只能压缩不能改写；马耳永远银白耳背配青绿耳膜，侧视只能收窄不能变种。</p>
+      <em>RULE 02</em>
+      <h3 data-i18n="r2.t">锚点不许翻译</h3>
+      <p data-i18n="r2.d">双色挑染、马耳、胸口三灯是不可变项。三灯永远 CY / PU / RD 横排等距 30px，侧视只能压缩不能改写；马耳永远银白耳背配青绿耳膜，侧视只能收窄不能变种。</p>
     </div>
     <div class="rule">
-      <div class="n">RULE 03</div>
-      <h3>让观众自己校验</h3>
-      <p>第 01 页铺满 0H—5H 水平参考线，同一条线穿过三个人物的同一身体位置。技术图纸的说服力，来自它允许被测量。</p>
+      <em>RULE 03</em>
+      <h3 data-i18n="r3.t">让观众自己校验</h3>
+      <p data-i18n="r3.d">第 01 页铺满 0H—5H 水平参考线，同一条线穿过三个人物的同一身体位置。技术图纸的说服力，来自它允许被测量。</p>
     </div>
     <div class="rule">
-      <div class="n">RULE 04</div>
-      <h3>克制的情感</h3>
-      <p>配色锁死在 INK 62% / WHITE 14% / INK-3 12% / SKIN 8% / CY 3%，紫 0.8%、红 0.2% 只留给次高光与告警。没有渐变泛滥、没有发光堆叠，角色的"暖"由表情差分承担。</p>
+      <em>RULE 04</em>
+      <h3 data-i18n="r4.t">克制的情感</h3>
+      <p data-i18n="r4.d">配色锁死在 INK 62% / WHITE 14% / INK-3 12% / SKIN 8% / CY 3%，紫 0.8%、红 0.2% 只留给次高光与告警。没有渐变泛滥、没有发光堆叠，角色的暖由表情差分承担。</p>
     </div>
   </div>
 
-  <div class="sechead" style="margin-top:64px">
-    <span class="idx">03</span><h2>版面分工</h2>
+  <div class="shead" style="margin-top:56px">
+    <span class="idx">03</span>
+    <h2 data-i18n="div.h">版面分工</h2>
     <span class="en">SHEET DIVISION</span>
   </div>
+
   <table>
-    <thead><tr><th>版面</th><th>承担什么</th><th>关键手法</th></tr></thead>
+    <thead>
+      <tr>
+        <th data-i18n="div.c1">版面</th>
+        <th data-i18n="div.c2">承担什么</th>
+        <th data-i18n="div.c3">关键手法</th>
+      </tr>
+    </thead>
     <tbody>
-      <tr><td>01 三视图</td><td>证明"同一个人"</td><td>0H—5H 共用参考线横穿三人；左侧 5.9H 标尺</td></tr>
-      <tr><td>02 姿态</td><td>证明锚点不随姿态漂移</td><td>前倾 14°、跨距 1.94H 的蹬地姿态 + 四处引线 + 头部三视角并置</td></tr>
-      <tr><td>03 部件</td><td>把锚点拆开看</td><td>六格放大：三灯 5.6×、耳 2.3×、尾接口 4.7×、靴 2.0×、领口 5.1×、马尾 1.65×</td></tr>
-      <tr><td>04 表情</td><td>把人格装回去</td><td>四种默认神态 + 锚点自检表</td></tr>
+      <tr><td data-i18n="div.r1a">01 三视图</td><td data-i18n="div.r1b">证明同一个人</td><td data-i18n="div.r1c">0H—5H 共用参考线横穿三人；左侧 5.9H 标尺</td></tr>
+      <tr><td data-i18n="div.r2a">02 姿态</td><td data-i18n="div.r2b">证明锚点不漂移</td><td data-i18n="div.r2c">前倾 14°、跨距 1.94H 的蹬地姿态 + 四处引线 + 头部三视角并置</td></tr>
+      <tr><td data-i18n="div.r3a">03 部件</td><td data-i18n="div.r3b">把锚点拆开看</td><td data-i18n="div.r3c">六格放大：三灯 5.6×、耳 2.3×、尾接口 4.7×、靴 2.0×、领口 5.1×、马尾 1.65×</td></tr>
+      <tr><td data-i18n="div.r4a">04 表情</td><td data-i18n="div.r4b">把人格装回去</td><td data-i18n="div.r4c">四种默认神态 + 锚点自检表</td></tr>
     </tbody>
   </table>
 </section>
 
 <section id="anchors" class="wrap">
-  <div class="sechead">
-    <span class="idx">04</span><h2>锚点与基准网格</h2>
+  <div class="shead">
+    <span class="idx">04</span>
+    <h2 data-i18n="anchors.h">锚点与基准网格</h2>
+    <span class="cnt">06</span>
     <span class="en">ANCHORS &amp; BASE GRID</span>
   </div>
 
-  <div class="anchor-grid">
-    <div class="anchor"><div class="h"><b>胸口三灯</b><span>LAMP TRIAD</span></div><p>CY 主 / PU 次 / RD 告警，横排等距 30px。</p></div>
-    <div class="anchor"><div class="h"><b>马耳</b><span>HORSE EAR</span></div><p>银白耳背 · 耳内青绿膜 · 独立于发箍。</p></div>
-    <div class="anchor"><div class="h"><b>尾接口</b><span>TAIL DOCK</span></div><p>腰侧偏后，接口环以 CY 描边。</p></div>
-    <div class="anchor"><div class="h"><b>靴形</b><span>BOOT FORM</span></div><p>楔形厚底，脚踝一圈 CY 断面。</p></div>
-    <div class="anchor"><div class="h"><b>领口</b><span>COLLAR</span></div><p>白色硬领压住锁骨，领缘一条 CY 细线。</p></div>
-    <div class="anchor"><div class="h"><b>马尾与挑染</b><span>TAIL + STREAK</span></div><p>外层 INK，内层 CY / PU 双条。</p></div>
+  <div class="anchors">
+    <article class="anchor">
+      <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><circle cx="7" cy="14" r="4" fill="#00E5B0"/><circle cx="14" cy="14" r="4" fill="#7C5CFF"/><circle cx="21" cy="14" r="4" fill="#FF3E5C"/><path d="M3 21h22" stroke="#00705D"/></svg>
+      <h3><span data-i18n="a1.t">胸口三灯</span><span>LAMP TRIAD</span></h3>
+      <p data-i18n="a1.d">CY 主 / PU 次 / RD 告警，横排等距 30px。</p>
+    </article>
+    <article class="anchor">
+      <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M9 22c-4-3-4-13 3-16 5-2 9 2 8 6-1 3-4 4-4 7 0 2 1 3 3 3" stroke="#AEBFCB" stroke-width="1.4"/><path d="M14 9c2 1 3 3 3 5" stroke="#00E5B0" stroke-width="1.4"/></svg>
+      <h3><span data-i18n="a2.t">马耳</span><span>HORSE EAR</span></h3>
+      <p data-i18n="a2.d">银白耳背、耳内青绿膜，独立于发箍。</p>
+    </article>
+    <article class="anchor">
+      <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><ellipse cx="14" cy="14" rx="7" ry="9" stroke="#00E5B0"/><ellipse cx="14" cy="14" rx="3" ry="4.5" stroke="#00705D"/></svg>
+      <h3><span data-i18n="a3.t">尾接口</span><span>TAIL DOCK</span></h3>
+      <p data-i18n="a3.d">腰侧偏后，接口环以 CY 描边。</p>
+    </article>
+    <article class="anchor">
+      <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M8 6h9l4 9v7H8z" stroke="#AEBFCB" stroke-width="1.4"/><path d="M8 18h13" stroke="#00E5B0"/><path d="M8 21h13" stroke="#00705D"/></svg>
+      <h3><span data-i18n="a4.t">靴形</span><span>BOOT FORM</span></h3>
+      <p data-i18n="a4.d">楔形厚底，脚踝一圈 CY 断面。</p>
+    </article>
+    <article class="anchor">
+      <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M7 19l4-11h6l4 11" stroke="#F4F8FA" stroke-width="1.4"/><path d="M9 15h10" stroke="#00E5B0"/></svg>
+      <h3><span data-i18n="a5.t">领口</span><span>COLLAR</span></h3>
+      <p data-i18n="a5.d">白色硬领压住锁骨，领缘一条 CY 细线。</p>
+    </article>
+    <article class="anchor">
+      <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M8 7c6 0 12 4 12 9 0 4-4 6-8 5" stroke="#AEBFCB" stroke-width="1.4"/><path d="M10 9c5 1 9 4 9 7" stroke="#7C5CFF" stroke-width="1.2"/><path d="M9 12c4 1 7 3 7 5" stroke="#00E5B0" stroke-width="1.2"/></svg>
+      <h3><span data-i18n="a6.t">马尾与挑染</span><span>TAIL + STREAK</span></h3>
+      <p data-i18n="a6.d">外层 INK，内层 CY / PU 双条。</p>
+    </article>
   </div>
 
-  <div style="margin-top:46px">
-    <table>
-      <thead><tr><th>网格锚点</th><th>Y 坐标</th><th>说明</th></tr></thead>
-      <tbody>
-        <tr><td>头顶</td><td>168</td><td>基准画布 1600 × 2400</td></tr>
-        <tr><td>下巴</td><td>512</td><td>头高 344px，5.9 头身</td></tr>
-        <tr><td>肩线</td><td>580</td><td>三灯所在横排的起点</td></tr>
-        <tr><td>腰线</td><td>876</td><td>—</td></tr>
-        <tr><td>髋线</td><td>1006</td><td>跨步姿态的旋转中心</td></tr>
-        <tr><td>膝</td><td>1424</td><td>—</td></tr>
-        <tr><td>地面</td><td>2216</td><td>靴底最低点回算落地补偿</td></tr>
-      </tbody>
-    </table>
+  <div class="datum">
+    <div>
+      <h3 data-i18n="datum.h">基准网格坐标</h3>
+      <table>
+        <thead>
+          <tr>
+            <th data-i18n="datum.c1">锚点</th>
+            <th data-i18n="datum.c2">Y 坐标</th>
+            <th data-i18n="datum.c3">说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td data-i18n="datum.r1a">头顶</td><td>168</td><td data-i18n="datum.r1c">基准画布 1600 × 2400</td></tr>
+          <tr><td data-i18n="datum.r2a">下巴</td><td>512</td><td data-i18n="datum.r2c">头高 344px，5.9 头身</td></tr>
+          <tr><td data-i18n="datum.r3a">肩线</td><td>580</td><td data-i18n="datum.r3c">三灯所在横排的起点</td></tr>
+          <tr><td data-i18n="datum.r4a">腰线</td><td>876</td><td data-i18n="datum.r4c">尾接口高度</td></tr>
+          <tr><td data-i18n="datum.r5a">髋线</td><td>1006</td><td data-i18n="datum.r5c">跨步姿态的旋转中心</td></tr>
+          <tr><td data-i18n="datum.r6a">膝</td><td>1424</td><td data-i18n="datum.r6c">靴筒上缘对齐</td></tr>
+          <tr><td data-i18n="datum.r7a">地面</td><td>2216</td><td data-i18n="datum.r7c">靴底最低点回算落地补偿</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <aside class="scale" aria-hidden="true">
+      <div class="ruler"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <p>0H — 5H<br><b data-i18n="datum.scale">头高 344 · 5.9 头身</b><br><span data-i18n="datum.tol">验收容差 3%</span></p>
+    </aside>
   </div>
 </section>
 
 <section id="palette" class="wrap">
-  <div class="sechead">
-    <span class="idx">05</span><h2>色卡 · PALETTE</h2>
-    <span class="en">LOCKED RATIO</span>
+  <div class="shead">
+    <span class="idx">05</span>
+    <h2 data-i18n="pal.h">色卡 · 配比锁定</h2>
+    <span class="cnt">10</span>
+    <span class="en">PALETTE / LOCKED RATIO</span>
   </div>
 
   <div class="palette">
-    <div class="sw"><div class="chip" style="background:#05070A"></div><div class="meta"><b>INK</b><span>#05070A · 62%</span></div></div>
-    <div class="sw"><div class="chip" style="background:#F4F8FA"></div><div class="meta"><b>WHITE</b><span>#F4F8FA · 14%</span></div></div>
-    <div class="sw"><div class="chip" style="background:#151F29"></div><div class="meta"><b>INK-3</b><span>#151F29 · 12%</span></div></div>
-    <div class="sw"><div class="chip" style="background:#EBBFAB"></div><div class="meta"><b>SKIN</b><span>#EBBFAB · 8%</span></div></div>
-    <div class="sw"><div class="chip" style="background:#00E5B0"></div><div class="meta"><b>CY</b><span>#00E5B0 · 3%</span></div></div>
-    <div class="sw"><div class="chip" style="background:#00A98A"></div><div class="meta"><b>CY-DEEP</b><span>#00A98A · 线稿</span></div></div>
-    <div class="sw"><div class="chip" style="background:#7C5CFF"></div><div class="meta"><b>PU</b><span>#7C5CFF · 0.8%</span></div></div>
-    <div class="sw"><div class="chip" style="background:#FF3E5C"></div><div class="meta"><b>RD</b><span>#FF3E5C · 0.2%</span></div></div>
-    <div class="sw"><div class="chip" style="background:#1E2A36"></div><div class="meta"><b>INK-4</b><span>#1E2A36 · 结构</span></div></div>
-    <div class="sw"><div class="chip" style="background:#AEBFCB"></div><div class="meta"><b>GREY</b><span>#AEBFCB · 注释</span></div></div>
+    <button class="sw" type="button" data-hex="#05070A"><span class="chip" style="background:#05070A"></span><span class="meta"><b>INK</b><span>#05070A · 62%</span></span></button>
+    <button class="sw" type="button" data-hex="#F4F8FA"><span class="chip" style="background:#F4F8FA"></span><span class="meta"><b>WHITE</b><span>#F4F8FA · 14%</span></span></button>
+    <button class="sw" type="button" data-hex="#151F29"><span class="chip" style="background:#151F29"></span><span class="meta"><b>INK-3</b><span>#151F29 · 12%</span></span></button>
+    <button class="sw" type="button" data-hex="#EBBFAB"><span class="chip" style="background:#EBBFAB"></span><span class="meta"><b>SKIN</b><span>#EBBFAB · 8%</span></span></button>
+    <button class="sw" type="button" data-hex="#00E5B0"><span class="chip" style="background:#00E5B0"></span><span class="meta"><b>CY</b><span>#00E5B0 · 3%</span></span></button>
+    <button class="sw" type="button" data-hex="#00A98A"><span class="chip" style="background:#00A98A"></span><span class="meta"><b>CY-DEEP</b><span>#00A98A · <i data-i18n="pal.role_line">线稿</i></span></span></button>
+    <button class="sw" type="button" data-hex="#7C5CFF"><span class="chip" style="background:#7C5CFF"></span><span class="meta"><b>PU</b><span>#7C5CFF · 0.8%</span></span></button>
+    <button class="sw" type="button" data-hex="#FF3E5C"><span class="chip" style="background:#FF3E5C"></span><span class="meta"><b>RD</b><span>#FF3E5C · 0.2%</span></span></button>
+    <button class="sw" type="button" data-hex="#1E2A36"><span class="chip" style="background:#1E2A36"></span><span class="meta"><b>INK-4</b><span>#1E2A36 · <i data-i18n="pal.role_struct">结构</i></span></span></button>
+    <button class="sw" type="button" data-hex="#AEBFCB"><span class="chip" style="background:#AEBFCB"></span><span class="meta"><b>GREY</b><span>#AEBFCB · <i data-i18n="pal.role_note">注释</i></span></span></button>
   </div>
 
-  <div class="ratio">
+  <div class="ratio" aria-hidden="true">
     <i style="width:62%;background:#F4F8FA"></i>
     <i style="width:14%;background:#151F29"></i>
     <i style="width:12%;background:#EBBFAB"></i>
@@ -331,65 +627,280 @@ footer p{max-width:760px;margin:18px 0 0;line-height:1.9}
   <div class="ratio-key">
     <span>INK / WHITE 62 : 14</span><span>INK-3 12</span><span>SKIN 8</span><span>CY 3</span><span>PU 0.8</span><span>RD 0.2</span>
   </div>
-  <p style="color:var(--grey2);font-size:12px;margin-top:20px">
-    验收口径：把任意两页并排，量头顶到下巴的像素高度，误差超过 3% 就算没做完。
-  </p>
+  <p class="palnote" data-i18n="pal.note">验收口径：把任意两页并排，量头顶到下巴的像素高度，误差超过 3% 就算没做完。点击色块可复制 HEX。</p>
 </section>
 
 <section id="docs" class="wrap">
-  <div class="sechead">
-    <span class="idx">06</span><h2>设定文档</h2>
+  <div class="shead">
+    <span class="idx">06</span>
+    <h2 data-i18n="docs.h">设定文档</h2>
+    <span class="cnt">06</span>
     <span class="en">SPECIFICATION DOCS</span>
   </div>
+
   <div class="docs">
     <a class="doc" href="https://github.com/yangyang2857-rgb/marvis-persona-spec/blob/main/docs/persona-spec-v3.md" target="_blank" rel="noopener">
-      <div class="p">docs/persona-spec-v3.md</div><div class="n">人格执行规范 v3</div><div class="d">角色人格基线、行为边界与执行条款</div>
+      <span class="p">docs/persona-spec-v3.md</span><span class="n" data-i18n="docs.d1n">人格执行规范 v3</span><span class="ar">→</span>
+      <span class="d" data-i18n="docs.d1d">角色人格基线、行为边界与执行条款</span>
     </a>
     <a class="doc" href="https://github.com/yangyang2857-rgb/marvis-persona-spec/blob/main/docs/fault-bloom.md" target="_blank" rel="noopener">
-      <div class="p">docs/fault-bloom.md</div><div class="n">Fault Bloom 设计哲学</div><div class="d">网格归零、锚点语法与四个版面的分工</div>
+      <span class="p">docs/fault-bloom.md</span><span class="n" data-i18n="docs.d2n">Fault Bloom 设计哲学</span><span class="ar">→</span>
+      <span class="d" data-i18n="docs.d2d">网格归零、锚点语法与四个版面的分工</span>
     </a>
     <a class="doc" href="https://github.com/yangyang2857-rgb/marvis-persona-spec/blob/main/docs/ci.md" target="_blank" rel="noopener">
-      <div class="p">docs/ci.md</div><div class="n">一致性门禁接入说明</div><div class="d">persona-lint 与硬门禁的接线方式</div>
+      <span class="p">docs/ci.md</span><span class="n" data-i18n="docs.d3n">一致性门禁接入说明</span><span class="ar">→</span>
+      <span class="d" data-i18n="docs.d3d">persona-lint 与硬门禁的接线方式</span>
     </a>
     <a class="doc" href="https://github.com/yangyang2857-rgb/marvis-persona-spec/blob/main/docs/research/01-ai-persona-report.md" target="_blank" rel="noopener">
-      <div class="p">docs/research/01-ai-persona-report.md</div><div class="n">AI 拟人形象研究报告</div><div class="d">形象可信度与拟人化的调研底稿</div>
+      <span class="p">docs/research/01-ai-persona-report.md</span><span class="n" data-i18n="docs.d4n">AI 拟人形象研究报告</span><span class="ar">→</span>
+      <span class="d" data-i18n="docs.d4d">形象可信度与拟人化的调研底稿</span>
     </a>
     <a class="doc" href="https://github.com/yangyang2857-rgb/marvis-persona-spec/blob/main/docs/research/02-consistency-handbook.md" target="_blank" rel="noopener">
-      <div class="p">docs/research/02-consistency-handbook.md</div><div class="n">角色一致性工程手册</div><div class="d">跨视图一致性的工程量化解法</div>
+      <span class="p">docs/research/02-consistency-handbook.md</span><span class="n" data-i18n="docs.d5n">角色一致性工程手册</span><span class="ar">→</span>
+      <span class="d" data-i18n="docs.d5d">跨视图一致性的工程量化解法</span>
     </a>
     <a class="doc" href="https://github.com/yangyang2857-rgb/marvis-persona-spec/blob/main/docs/research/04-ip-next-step.md" target="_blank" rel="noopener">
-      <div class="p">docs/research/04-ip-next-step.md</div><div class="n">可执行 IP 下一步</div><div class="d">关系门槛与代价的取舍</div>
+      <span class="p">docs/research/04-ip-next-step.md</span><span class="n" data-i18n="docs.d6n">可执行 IP 下一步</span><span class="ar">→</span>
+      <span class="d" data-i18n="docs.d6d">关系门槛与代价的取舍</span>
     </a>
   </div>
-  <p style="margin-top:22px;color:var(--grey2);font-size:12px">
-    设定正文以仓库内 Markdown 为准；本页只做视觉呈现与索引。
-  </p>
+  <p class="docsnote" data-i18n="docs.note">设定正文以仓库内 Markdown 为准；本页只做视觉呈现与索引。</p>
 </section>
 
 </main>
 
 <footer class="wrap">
   <div class="row">
-    <span class="lic mono">DOCS &amp; VISUALS · CC BY-NC-ND 4.0</span>
-    <span class="lic mono">CODE · MIT</span>
-    <a class="mono" href="https://github.com/yangyang2857-rgb/marvis-persona-spec" target="_blank" rel="noopener" style="font-size:10px">github.com/yangyang2857-rgb/marvis-persona-spec</a>
+    <span class="lic">DOCS &amp; VISUALS · CC BY-NC-ND 4.0</span>
+    <span class="lic">CODE · MIT</span>
+    <span class="spacer">
+      <button class="mini" id="printBtn" type="button" data-i18n="foot.print">打印 / 存为 PDF</button>
+      <a class="mini" href="#top" data-i18n="foot.top">回到顶部</a>
+    </span>
   </div>
-  <p>
-    本页图像为矢量生成资产，原始文件保留生成元数据；二次使用请遵循 CC BY-NC-ND 4.0（署名 · 非商业 · 禁止演绎）。
-    角色形象为独立原创设定，与任何既有作品角色无隶属关系。
-  </p>
+  <p data-i18n="foot.p">本页图像为矢量生成资产，原始文件保留生成元数据；二次使用请遵循 CC BY-NC-ND 4.0（署名 · 非商业 · 禁止演绎）。角色形象为独立原创设定，与任何既有作品角色无隶属关系。</p>
 </footer>
 
-<div id="lb"><span class="x">CLOSE ×</span><img alt=""></div>
+<div id="lb" role="dialog" aria-modal="true" aria-label="Preview" data-i18n-attr="aria-label:ui.preview">
+  <button class="x" id="lbClose" type="button" data-i18n="ui.close" data-i18n-attr="aria-label:ui.close">关闭</button>
+  <img alt="">
+  <span class="cap" id="lbCap"></span>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="i18n.js"></script>
 <script>
-(function(){
-  var lb=document.getElementById('lb'), img=lb.querySelector('img');
-  document.querySelectorAll('[data-lb]').forEach(function(a){
-    a.addEventListener('click',function(e){e.preventDefault();img.src=a.getAttribute('href');lb.classList.add('on');});
+const I18N = window.MARVIS_I18N;
+const LANGS = window.MARVIS_LANGS || [{code:"zh-Hans",short:"简",native:"简体中文",en:"Simplified Chinese"}];
+const SUPPORTED = LANGS.map(l => l.code);
+
+function pickLang(){
+  let saved = null;
+  try{ saved = localStorage.getItem("marvis-lang"); }catch(e){}
+  if (SUPPORTED.includes(saved)) return saved;
+  const n = String(navigator.language || navigator.userLanguage || "zh-Hans").replace("_","-");
+  if (/^zh-(tw|hk|mo|hant)/i.test(n)) return "zh-Hant";
+  if (/^zh/i.test(n)) return "zh-Hans";
+  if (/^ja/i.test(n)) return "ja";
+  if (/^ko/i.test(n)) return "ko";
+  if (/^es/i.test(n)) return "es";
+  return "en";
+}
+
+function applyLang(lang){
+  const dict = I18N[lang] || I18N["zh-Hans"];
+  document.documentElement.lang = lang;
+  document.documentElement.dir = "ltr";
+  document.body.dataset.lang = lang;
+
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const v = dict[el.dataset.i18n];
+    if (v !== undefined) el.textContent = v;
   });
-  lb.addEventListener('click',function(){lb.classList.remove('on');img.src='';});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'){lb.classList.remove('on');img.src='';}});
+  const titleEl = document.querySelector("[data-i18n='meta.title']");
+  if (titleEl) document.title = dict["meta.title"] || document.title;
+
+  document.querySelectorAll("[data-i18n-attr]").forEach(el=>{
+    el.dataset.i18nAttr.split(";").forEach(pair=>{
+      const [attr, key] = pair.split(":");
+      const v = dict[key.trim()];
+      if (v !== undefined) el.setAttribute(attr.trim(), v);
+    });
+  });
+
+  const cur = LANGS.find(l=> l.code === lang) || LANGS[0];
+  const curEl = document.getElementById("langCur");
+  if (curEl) curEl.textContent = cur.short;
+  const tbLang = document.getElementById("tbLang");
+  if (tbLang) tbLang.textContent = cur.code.toUpperCase();
+  document.querySelectorAll("#langMenu button").forEach(b=>{
+    const on = b.dataset.lang === lang;
+    b.setAttribute("aria-selected", String(on));
+    b.tabIndex = on ? 0 : -1;
+  });
+
+  try{ localStorage.setItem("marvis-lang", lang); }catch(e){}
+}
+
+/* ---- language popover ---- */
+(function(){
+  const box = document.getElementById("langbox");
+  const btn = document.getElementById("langBtn");
+  const menu = document.getElementById("langMenu");
+  if (!box || !btn || !menu) return;
+
+  menu.innerHTML = LANGS.map(l=>
+    '<button type="button" role="option" data-lang="' + l.code + '" aria-selected="false" tabindex="-1">' +
+      '<span class="code">' + l.code.split("-")[0].toUpperCase() + '</span>' +
+      '<span class="nat">' + l.native + '</span>' +
+      '<span class="en">' + l.en + '</span>' +
+    '</button>'
+  ).join("");
+
+  const items = () => Array.from(menu.querySelectorAll("button"));
+  const isOpen = () => !menu.hidden;
+  const open = () => {
+    menu.hidden = false;
+    btn.setAttribute("aria-expanded","true");
+    const cur = menu.querySelector('[aria-selected="true"]') || items()[0];
+    if (cur) cur.focus();
+  };
+  const close = (back) => {
+    if (!isOpen()) return;
+    menu.hidden = true;
+    btn.setAttribute("aria-expanded","false");
+    if (back) btn.focus();
+  };
+
+  btn.addEventListener("click", e=>{ e.stopPropagation(); isOpen() ? close(true) : open(); });
+  menu.addEventListener("click", e=>{
+    const b = e.target.closest("button[data-lang]");
+    if (!b) return;
+    applyLang(b.dataset.lang);
+    close(true);
+  });
+  menu.addEventListener("keydown", e=>{
+    const list = items();
+    const i = list.indexOf(document.activeElement);
+    if (e.key === "ArrowDown"){ e.preventDefault(); (list[i+1] || list[0]).focus(); }
+    else if (e.key === "ArrowUp"){ e.preventDefault(); (list[i-1] || list[list.length-1]).focus(); }
+    else if (e.key === "Home"){ e.preventDefault(); list[0].focus(); }
+    else if (e.key === "End"){ e.preventDefault(); list[list.length-1].focus(); }
+    else if (e.key === "Escape"){ e.preventDefault(); close(true); }
+    else if (e.key === "Tab"){ close(false); }
+  });
+  document.addEventListener("click", e=>{ if (!box.contains(e.target)) close(false); });
+  document.addEventListener("keydown", e=>{ if (e.key === "Escape") close(true); });
+  window.addEventListener("scroll", ()=> close(false), {passive:true});
 })();
+
+/* ---- progress + stuck header ---- */
+const hdr = document.getElementById("hdr");
+const progBar = document.getElementById("progBar");
+const onScroll = ()=>{
+  hdr.classList.toggle("is-stuck", window.scrollY > 8);
+  if (progBar){
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progBar.style.transform = "scaleX(" + (max > 0 ? Math.min(1, window.scrollY / max) : 0) + ")";
+  }
+};
+window.addEventListener("scroll", onScroll, {passive:true});
+window.addEventListener("resize", onScroll, {passive:true});
+onScroll();
+
+/* ---- nav current section (scroll-position based, stable for short sections) ---- */
+(function(){
+  const links = Array.from(document.querySelectorAll(".nav a[href^='#']"));
+  if (!links.length) return;
+  const pairs = links.map(a=>({a, el: document.querySelector(a.getAttribute("href"))})).filter(p=>p.el);
+  if (!pairs.length) return;
+  let raf = null;
+  const sync = ()=>{
+    raf = null;
+    const hh = (document.getElementById('hdr')||{offsetHeight:66}).offsetHeight;
+    const y = window.scrollY + hh + 24;
+    let active = null;
+    pairs.forEach(p=>{ if (p.el.offsetTop <= y) active = p; });
+    if (!active && window.scrollY < 40) active = null;
+    if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 4) active = pairs[pairs.length-1];
+    pairs.forEach(p=> p.a.classList.toggle("on", p === active));
+  };
+  const req = ()=>{ if (raf === null) raf = requestAnimationFrame(sync); };
+  window.addEventListener("scroll", req, {passive:true});
+  window.addEventListener("resize", req, {passive:true});
+  sync();
+})();
+
+/* ---- lightbox: focus trap + scroll lock ---- */
+(function(){
+  const lb = document.getElementById("lb");
+  const img = lb.querySelector("img");
+  const cap = document.getElementById("lbCap");
+  const xBtn = document.getElementById("lbClose");
+  let lastFocus = null;
+
+  const open = (a)=>{
+    lastFocus = document.activeElement;
+    img.src = a.getAttribute("href");
+    img.alt = (a.querySelector("img") && a.querySelector("img").alt) || "";
+    cap.textContent = "PLATE " + (a.dataset.cap || "");
+    lb.classList.add("on");
+    document.body.classList.add("lb-open");
+    xBtn.focus();
+  };
+  const close = ()=>{
+    if (!lb.classList.contains("on")) return;
+    lb.classList.remove("on");
+    document.body.classList.remove("lb-open");
+    img.removeAttribute("src");
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+    else document.getElementById("langBtn").focus();
+  };
+
+  document.querySelectorAll("[data-lb]").forEach(a=>{
+    a.addEventListener("click", e=>{ e.preventDefault(); open(a); });
+  });
+  lb.addEventListener("click", e=>{ if (e.target === lb) close(); });
+  xBtn.addEventListener("click", close);
+  document.addEventListener("keydown", e=>{
+    if (!lb.classList.contains("on")) return;
+    if (e.key === "Escape"){ e.preventDefault(); close(); }
+    if (e.key === "Tab"){
+      e.preventDefault();
+      xBtn.focus();
+    }
+  });
+})();
+
+/* ---- palette copy ---- */
+(function(){
+  const toast = document.getElementById("toast");
+  let t;
+  const flash = msg=>{
+    toast.textContent = msg;
+    toast.classList.add("on");
+    clearTimeout(t);
+    t = setTimeout(()=> toast.classList.remove("on"), 1400);
+  };
+  document.querySelectorAll(".sw").forEach(sw=>{
+    const copy = ()=>{
+      const hex = sw.dataset.hex;
+      const lang = document.body.dataset.lang || "zh-Hans";
+      const msg = (I18N[lang] || I18N["zh-Hans"])["ui.copied"] || "Copied";
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(hex).then(()=> flash(hex + "  " + msg)).catch(()=> flash(hex));
+      } else { flash(hex); }
+    };
+    sw.addEventListener("click", copy);
+  });
+})();
+
+/* ---- print ---- */
+const printBtn = document.getElementById("printBtn");
+if (printBtn) printBtn.addEventListener("click", ()=> window.print());
+
+applyLang(pickLang());
 </script>
 </body>
 </html>
