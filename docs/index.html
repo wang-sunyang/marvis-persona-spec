@@ -271,7 +271,8 @@ body.lb-open{overflow:hidden}
   .bar{height:auto;gap:0 12px;padding-block:2px 0;flex-wrap:wrap}
   .mark{margin-right:auto}
   .mark i{display:none}
-  .nav{order:3;flex:1 1 100%;margin-left:0;gap:0 12px;flex-wrap:wrap;justify-content:flex-start;padding:0;border-top:1px solid var(--line2);overflow:visible}
+  .nav{order:3;flex:1 1 100%;margin-left:0;gap:0 10px;flex-wrap:nowrap;justify-content:flex-start;padding:0;border-top:1px solid var(--line2);overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .nav::-webkit-scrollbar{display:none}
   .nav a{font-size:12px;letter-spacing:-.005em;padding:0;min-height:44px;min-width:44px;justify-content:center;display:inline-flex;align-items:center;white-space:nowrap}
   .nav a:after{bottom:0;left:0;right:0}
   .langbtn{min-height:44px}
@@ -336,6 +337,7 @@ body.lb-open{overflow:hidden}
       <a href="#rules" data-i18n="nav.rules">规矩</a>
       <a href="#anchors" data-i18n="nav.anchors">锚点</a>
       <a href="#palette" data-i18n="nav.palette">色卡</a>
+      <a href="style-matrix.html" data-i18n="nav.matrix">矩阵</a>
       <a href="#docs" data-i18n="nav.docs">文档</a>
     </nav>
     <div class="langbox" id="langbox">
