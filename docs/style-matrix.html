@@ -72,6 +72,7 @@ p{margin:0 0 14px;color:var(--grey);max-width:64ch}
 /* hero */
 .hero{display:grid;grid-template-columns:1fr 300px;gap:34px;align-items:start;padding-top:60px}
 .figure{border:1px solid var(--line);background:var(--ink2);position:relative}
+.figure picture{display:block}
 .figure img{width:100%;height:auto;background:#fff}
 .figure img.done{background:none}
 .figure .tag{position:absolute;top:0;left:0;background:var(--ink);border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:6px 11px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--cy)}
@@ -166,7 +167,7 @@ footer a{color:var(--cy)}
       <p class="lead" data-i18n="mx.lead">同一个 MARVIS，被放进九种主流 AI 的视觉语言里。上图是本家定稿——正、侧、背三视图共用地面线与头身网格，锚点跨视图不许改写。</p>
       <div class="figure" style="margin-top:22px">
         <span class="tag" data-i18n="mx.f6.tag">SHEET 06 · CANONICAL</span>
-        <img src="assets/set/marvis-canonical-v3.png" width="1224" height="1285" data-i18n-attr="alt:mx.f6.alt" alt="MARVIS 本家定稿：正、侧、背三视图加头部特写" loading="lazy" decoding="async">
+        <picture><source type="image/webp" srcset="assets/set/canonical-760.webp 760w, assets/set/canonical-1100.webp 1100w" sizes="(max-width:900px) calc(100vw - 56px), 788px"><img src="assets/set/marvis-canonical-v3.png" width="1224" height="1285" data-i18n-attr="alt:mx.f6.alt" alt="MARVIS 本家定稿：正、侧、背三视图加头部特写" loading="lazy" decoding="async"></picture>
         <div class="cap" data-i18n="mx.f6.cap">FIG.06 — 本家定稿 / 正·侧·背 + 头部特写 / 5.9H</div>
       </div>
     </div>
@@ -190,7 +191,7 @@ footer a{color:var(--cy)}
       <p data-i18n="mx.mk.p">统一构图、统一机位、统一姿态，只换渲染与色彩语言。这一页的作用不是选哪张好看，而是验证：锚点强度够不够硬。</p>
       <div class="figure" style="margin-top:22px">
         <span class="tag" data-i18n="mx.f7.tag">SHEET 07 · 3×3</span>
-        <img src="assets/set/marvis-style-matrix-3x3.png" width="1024" height="1536" data-i18n-attr="alt:mx.f7.alt" alt="MARVIS 九宫格风格矩阵" loading="lazy" decoding="async">
+        <picture><source type="image/webp" srcset="assets/set/matrix-760.webp 760w, assets/set/matrix-1024.webp 1024w" sizes="(max-width:900px) calc(100vw - 56px), 788px"><img src="assets/set/marvis-style-matrix-3x3.png" width="1024" height="1536" data-i18n-attr="alt:mx.f7.alt" alt="MARVIS 九宫格风格矩阵" loading="lazy" decoding="async"></picture>
         <div class="cap" data-i18n="mx.f7.cap">FIG.07 — 九格对比 / 每格均保留马耳、双色挑染、胸口三色块</div>
       </div>
     </div>
