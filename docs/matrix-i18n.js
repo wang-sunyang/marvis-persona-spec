@@ -61,7 +61,7 @@ window.MATRIX_I18N = {
     "mx.pr.kicker": "PROMPTS / 复用",
     "mx.pr.h": "把方法也交出去",
     "mx.pr.p": "提示词包按 CC BY 4.0 开放：署名「王孙阳 / Nightglean Studio」并附仓库链接，即可转载、改编、商用。",
-    "mx.pr.btn1": "风格提示词包 v2 · 全文",
+    "mx.pr.btn1": "风格提示词包 v3 · 全文",
     "mx.pr.btn2": "返回锚点规范",
     "mx.ft.back": "← 回到设定集"
   },
@@ -126,7 +126,7 @@ window.MATRIX_I18N = {
     "mx.pr.kicker": "PROMPTS / 複用",
     "mx.pr.h": "把方法也交出去",
     "mx.pr.p": "提示詞包按 CC BY 4.0 開放：署名「王孫陽 / Nightglean Studio」並附倉庫連結，即可轉載、改編、商用。",
-    "mx.pr.btn1": "風格提示詞包 v2 · 全文",
+    "mx.pr.btn1": "風格提示詞包 v3 · 全文",
     "mx.pr.btn2": "返回錨點規範",
     "mx.ft.back": "← 回到設定集"
   },
@@ -191,7 +191,7 @@ window.MATRIX_I18N = {
     "mx.pr.kicker": "PROMPTS / REUSE",
     "mx.pr.h": "Hand the method over too",
     "mx.pr.p": "The prompt pack is released under CC BY 4.0: credit “Wang Sunyang / Nightglean Studio” with a link to the repository, then reuse, remix and sell freely.",
-    "mx.pr.btn1": "Style prompt pack v2 · full text",
+    "mx.pr.btn1": "Style prompt pack v3 · full text",
     "mx.pr.btn2": "Back to anchor spec",
     "mx.ft.back": "← Back to the character bible"
   },
@@ -256,7 +256,7 @@ window.MATRIX_I18N = {
     "mx.pr.kicker": "PROMPTS / 再利用",
     "mx.pr.h": "方法も公開する",
     "mx.pr.p": "プロンプトパックは CC BY 4.0 で公開：「王孫陽 / Nightglean Studio」のクレジットとリポジトリへのリンクを添えれば、転載・改変・商用利用が可能。",
-    "mx.pr.btn1": "スタイルプロンプト v2 · 全文",
+    "mx.pr.btn1": "スタイルプロンプト v3 · 全文",
     "mx.pr.btn2": "アンカー仕様に戻る",
     "mx.ft.back": "← 設定集に戻る"
   },
@@ -321,7 +321,7 @@ window.MATRIX_I18N = {
     "mx.pr.kicker": "PROMPTS / 재사용",
     "mx.pr.h": "방법도 함께 공개합니다",
     "mx.pr.p": "프롬프트 팩은 CC BY 4.0으로 공개합니다. “왕쑨양 / Nightglean Studio” 출처와 저장소 링크를 붙이면 전재·변형·상업적 이용이 가능합니다.",
-    "mx.pr.btn1": "스타일 프롬프트 v2 · 전문",
+    "mx.pr.btn1": "스타일 프롬프트 v3 · 전문",
     "mx.pr.btn2": "앵커 규범으로 돌아가기",
     "mx.ft.back": "← 설정집으로 돌아가기"
   },
@@ -386,7 +386,7 @@ window.MATRIX_I18N = {
     "mx.pr.kicker": "PROMPTS / REUTILIZAR",
     "mx.pr.h": "También entregamos el método",
     "mx.pr.p": "El pack de prompts se publica bajo CC BY 4.0: acredita a «Wang Sunyang / Nightglean Studio» con enlace al repositorio y podrás reproducirlo, adaptarlo y usarlo comercialmente.",
-    "mx.pr.btn1": "Pack de prompts de estilo v2 · texto completo",
+    "mx.pr.btn1": "Pack de prompts de estilo v3 · texto completo",
     "mx.pr.btn2": "Volver a la especificación de anclas",
     "mx.ft.back": "← Volver a la biblia del personaje"
   }
