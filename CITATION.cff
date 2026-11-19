@@ -9,14 +9,14 @@ abstract: >-
 authors:
   - family-names: "Wang"
     given-names: "Sunyang"
-    alias: "yangyang2857-rgb"
-    website: "https://yangyang2857-rgb.github.io"
+    alias: "wang-sunyang"
+    website: "https://wang-sunyang.github.io"
 version: "3.0.0"
 date-released: "2026-11-14"
 license: "CC-BY-NC-ND-4.0"
-license-url: "https://github.com/yangyang2857-rgb/marvis-persona-spec/blob/main/LICENSE-DOCS.md"
-repository-code: "https://github.com/yangyang2857-rgb/marvis-persona-spec"
-url: "https://github.com/yangyang2857-rgb/marvis-persona-spec"
+license-url: "https://github.com/wang-sunyang/marvis-persona-spec/blob/main/LICENSE-DOCS.md"
+repository-code: "https://github.com/wang-sunyang/marvis-persona-spec"
+url: "https://github.com/wang-sunyang/marvis-persona-spec"
 keywords:
   - persona spec
   - ai agent personality

@@ -1,7 +1,7 @@
 <!--
 MARVIS Style Prompt Pack v3
 Author: 王孙阳 (Wang Sunyang) / Nightglean Studio
-Repo: https://github.com/yangyang2857-rgb/marvis-persona-spec
+Repo: https://github.com/wang-sunyang/marvis-persona-spec
 License: CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/
 You may share and adapt this prompt pack for any purpose, including commercially,
 provided you give appropriate credit to the author and the repository above.
