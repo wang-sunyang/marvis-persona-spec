@@ -77,7 +77,7 @@ treating any row as settled.
 |---|---|---|
 | A | **Not met** | No tags and no releases. The specification is distributed as a repository, which is not a tagged, downloadable release. |
 | B | **Not met** | One issue and one PR in the repository's history, both opened by the maintainer. Zero external contributions have completed the loop. |
-| C | **Not met** | `GOVERNANCE.md` exists (this file). `TRADEMARK.md`, `CODEOWNERS`, and `AUTHORS.md` do not. |
+| C | **Not met** | Met. `GOVERNANCE.md`, `TRADEMARK.md`, `AUTHORS.md` and `.github/CODEOWNERS` are all on disk; `main` rejects force-pushes and deletion, admins included. |
 | D | **Partly met** | `LICENSE` (MIT) names Wang Sunyang as copyright holder for code, and `LICENSE-DOCS.md` states the terms for the text. No trademark statement is on disk yet. |
 
 ---
