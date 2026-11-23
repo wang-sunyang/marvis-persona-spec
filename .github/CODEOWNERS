@@ -1,0 +1,20 @@
+# CODEOWNERS — every path resolves to the sole copyright holder.
+# Default: nothing merges without review from @wang-sunyang.
+
+*       @wang-sunyang
+
+# Specification text is the product here
+/docs/            @wang-sunyang
+/*.md             @wang-sunyang
+/CITATION.cff     @wang-sunyang
+
+# Brand artwork and tooling
+/assets/          @wang-sunyang
+/tools/           @wang-sunyang
+
+# Governance
+/LICENSE          @wang-sunyang
+/LICENSE-DOCS.md  @wang-sunyang
+/AUTHORS.md       @wang-sunyang
+/TRADEMARK.md     @wang-sunyang
+/.github/         @wang-sunyang
